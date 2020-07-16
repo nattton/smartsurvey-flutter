@@ -51,6 +51,7 @@ flutter:
     - assets/smartsurvey_master.db
     - images/ic_launcher.png
     - images/cddlogo.png
+    - images/bgimage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

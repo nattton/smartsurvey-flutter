@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartsurveys/constants/my_font.dart';
 import 'package:smartsurveys/database/query.dart';
 import 'package:smartsurveys/model/surveymetric.dart';
 import 'package:smartsurveys/model/surveygroup.dart';
@@ -18,39 +19,49 @@ class _SurveyMetricPageState extends State<SurveyMetricPage> {
   @override
   Widget build(BuildContext context) {
     final SurveyGroup sg = ModalRoute.of(context).settings.arguments;
-    return Scaffold (
+    return Scaffold(
         appBar: AppBar(
           title: Text(sg.groupDisplay),
         ),
-        body: FutureBuilder<List>(
-          future: _query.getSurveyMetrics(sg.id),
-          initialData: List(),
-          builder: (context, snapshot) {
-            return snapshot.hasData ?
-            new ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, i) {
-                return _buildRow(snapshot.data[i]);
-              },
-            )
-                : Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-        )
-    );
+        body: Container(
+            padding: EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/bgimage.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
+                decoration: BoxDecoration(
+                    color: MyFont.colorBG,
+                    borderRadius:
+                        new BorderRadius.all(const Radius.circular(30.0))),
+                child: FutureBuilder<List>(
+                  future: _query.getSurveyMetrics(sg.id),
+                  initialData: List(),
+                  builder: (context, snapshot) {
+                    return snapshot.hasData
+                        ? new ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, i) {
+                              return _buildRow(snapshot.data[i]);
+                            },
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  },
+                ))));
   }
 
   Widget _buildRow(SurveyMetric sm) {
     return GestureDetector(
         child: new ListTile(
-      title: new Text(sm.metricDisplay, style: _biggerFont),
-      contentPadding: EdgeInsets.all(8.0),
-    ),
-    onTap: () {
-      Navigator.pushNamed(context, SurveyPage.routeName,
-          arguments: sm
-      );
-    });
+          title: new Text(sm.metricDisplay, style: _biggerFont),
+          contentPadding: EdgeInsets.all(8.0),
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, SurveyPage.routeName, arguments: sm);
+        });
   }
 }
