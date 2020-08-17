@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartsurveys/constants/my_font.dart';
+import 'package:smartsurveys/model/family.dart';
 import 'package:smartsurveys/widget/labeled_radio.dart';
 
 class Survey1 extends StatefulWidget {
@@ -8,11 +10,21 @@ class Survey1 extends StatefulWidget {
 }
 
 class _Survey1State extends State<Survey1> {
-  String _a1111 = "";
-  String _a1112 = "";
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<Family> _family;
+  @override
+  void initState() {
+    super.initState();
+    _family = _prefs.then((SharedPreferences prefs) {
+      return prefs.get("family") ?? new Family();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+//    var f = await getFamily();
+//    print(f);
+//    setFamily('hello family');
     return ListView(
       children: <Widget>[
         ListTile(
@@ -24,20 +36,21 @@ class _Survey1State extends State<Survey1> {
         LabeledRadio(
           label: 'มี ... คน',
           value: "1",
-          groupValue: _a1111,
+          groupValue: _family.then((f) {return f.getAnswer("1111"); }),
           onChanged: (String value) {
             setState(() {
-              _a1111 = value;
+              _family.then((f) => {f.setAnswer("1111", value)});
             });
           },
         ),
         LabeledRadio(
           label: 'ไม่มี (ข้ามไปข้อ 3)',
           value: "0",
-          groupValue: _a1111,
+          groupValue: _family.then((f) {return f.getAnswer("1111"); }),
+
           onChanged: (String value) {
             setState(() {
-              _a1111 = value;
+              _family.then((f) => {f.setAnswer("1111", value)});
             });
           },
         ),
@@ -47,24 +60,38 @@ class _Survey1State extends State<Survey1> {
         LabeledRadio(
           label: 'ทุกคน',
           value: "1",
-          groupValue: _a1112,
+          groupValue: _family.then((f) => f.getAnswer("1112")),
           onChanged: (String value) {
             setState(() {
-              _a1112 = value;
+              _family.then((f) => {f.setAnswer("1112", value)});
             });
           },
         ),
         LabeledRadio(
           label: 'น้อยกว่า ... คน',
           value: "0",
-          groupValue: _a1112,
+          groupValue: _family.then((f) => f.getAnswer("1112")),
           onChanged: (String value) {
             setState(() {
-              _a1112 = value;
+              _family.then((f) => {f.setAnswer("1112", value)});
             });
           },
         ),
       ],
     );
+  }
+
+  Future<String> _read(String key) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final Family family = prefs.get("family") ?? Family();
+    final ans = family.getAnswer(key);
+    print("read: $key : $ans");
+    return ans;
+  }
+  _save(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    final Family family = prefs.getString("family") ?? Family();
+    family.setAnswer(key, value);
+    print('saved $value');
   }
 }
