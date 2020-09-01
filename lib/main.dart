@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/home_page.dart';
+import 'package:smartsurveys/HomePage.dart';
 import 'package:smartsurveys/my_constants.dart';
-import 'package:smartsurveys/ui/surveygroup_page.dart';
-import 'package:smartsurveys/ui/surveymetric_page.dart';
-import 'package:smartsurveys/ui/survey_page.dart';
-import 'login_page.dart';
-import 'home_page.dart';
+import 'package:smartsurveys/ui/SurveyGroupPage.dart';
+import 'package:smartsurveys/ui/SurveyMetricPage.dart';
+import 'package:smartsurveys/ui/SurveyPage.dart';
+import 'LoginPage.dart';
+import 'HomePage.dart';
 
 void main() {
   runApp(

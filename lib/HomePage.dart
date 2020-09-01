@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/ui/surveygroup_page.dart';
+import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = 'home-page';
@@ -37,18 +37,10 @@ class HomePage extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(28.0),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.blue,
-            Colors.lightBlueAccent
-          ])
-        ),
+            gradient:
+                LinearGradient(colors: [Colors.blue, Colors.lightBlueAccent])),
         child: Column(
-          children: <Widget>[
-            logo,
-            welcome,
-            lorem,
-            SurveyGroupPage()
-          ],
+          children: <Widget>[logo, welcome, lorem, SurveyGroupPage()],
         ),
       ),
     );

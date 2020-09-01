@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/constants/my_font.dart';
-import 'package:smartsurveys/model/surveymetric.dart';
-import 'package:smartsurveys/survey/survey1.dart';
-import 'package:smartsurveys/survey/survey2.dart';
-import 'package:smartsurveys/survey/survey3.dart';
-import 'package:smartsurveys/survey/survey4.dart';
-import 'package:smartsurveys/survey/survey5.dart';
+import 'package:smartsurveys/constants/MyFont.dart';
+import 'package:smartsurveys/models/SurveyMetric.dart';
+import 'package:smartsurveys/survey/Survey1.dart';
+import 'package:smartsurveys/survey/Survey2.dart';
+import 'package:smartsurveys/survey/Survey3.dart';
+import 'package:smartsurveys/survey/Survey4.dart';
+import 'package:smartsurveys/survey/Survey5.dart';
 
 class SurveyPage extends StatefulWidget {
   static String routeName = 'survey';
