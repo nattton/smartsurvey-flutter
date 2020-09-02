@@ -1,28 +1,30 @@
-import 'package:flutter/material.dart';
-import 'package:smartsurveys/constants/my_font.dart';
-import 'package:smartsurveys/database/query.dart';
-import 'package:smartsurveys/model/surveymetric.dart';
-import 'package:smartsurveys/model/surveygroup.dart';
-import 'package:smartsurveys/ui/survey_page.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 
-class SurveyMetricPage extends StatefulWidget {
-  static String routeName = 'surveymetric-page';
+import 'package:flutter/material.dart';
+import 'package:smartsurveys/constants/MyFont.dart';
+import 'package:smartsurveys/database/QueryCtr.dart';
+import 'package:smartsurveys/models/SurveyGroup.dart';
+import 'package:smartsurveys/ui/SurveyMetricPage.dart';
+
+class SurveyGroupPage extends StatefulWidget {
+  static String routeName = 'surveygroup-page';
 
   @override
-  _SurveyMetricPageState createState() => _SurveyMetricPageState();
+  _SurveyGroupPageState createState() => _SurveyGroupPageState();
 }
 
-class _SurveyMetricPageState extends State<SurveyMetricPage> {
+class _SurveyGroupPageState extends State<SurveyGroupPage> {
   final _biggerFont = const TextStyle(fontSize: 18.0);
   QueryCtr _query = QueryCtr();
 
   @override
   Widget build(BuildContext context) {
-    final SurveyGroup sg = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
-          title: Text(sg.groupDisplay),
+          title: Text('หมวดรายการสำรวจ'),
         ),
+        backgroundColor: Colors.white,
         body: Container(
             padding: EdgeInsets.all(12.0),
             decoration: BoxDecoration(
@@ -35,9 +37,10 @@ class _SurveyMetricPageState extends State<SurveyMetricPage> {
                 decoration: BoxDecoration(
                     color: MyFont.colorBG,
                     borderRadius:
-                        new BorderRadius.all(const Radius.circular(30.0))),
+                    new BorderRadius.all(const Radius.circular(30.0))
+                ),
                 child: FutureBuilder<List>(
-                  future: _query.getSurveyMetrics(sg.id),
+                  future: _query.getAllSurveyGroups(),
                   initialData: List(),
                   builder: (context, snapshot) {
                     return snapshot.hasData
@@ -54,14 +57,17 @@ class _SurveyMetricPageState extends State<SurveyMetricPage> {
                 ))));
   }
 
-  Widget _buildRow(SurveyMetric sm) {
+  Widget _buildRow(SurveyGroup sg) {
+    Uint8List byte = base64.decode(sg.groupImage);
     return GestureDetector(
-        child: new ListTile(
-          title: new Text(sm.metricDisplay, style: _biggerFont),
-          contentPadding: EdgeInsets.all(8.0),
-        ),
-        onTap: () {
-          Navigator.pushNamed(context, SurveyPage.routeName, arguments: sm);
-        });
+      child: new ListTile(
+        title: new Text(sg.groupDisplay, style: _biggerFont),
+        leading: new Image.memory(byte),
+        contentPadding: EdgeInsets.all(16.0),
+      ),
+      onTap: () {
+        Navigator.pushNamed(context, SurveyMetricPage.routeName, arguments: sg);
+      },
+    );
   }
 }

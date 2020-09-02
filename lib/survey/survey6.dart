@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/constants/my_font.dart';
+import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/widget/labeled_radio.dart';
 
 class Survey6 extends StatefulWidget {
@@ -16,10 +16,14 @@ class _Survey6State extends State<Survey6> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text('6. คนอายุ 35 ปีขึ้นไป ได้รับการตรวจสุขภาพประจำปี', style: MyFont.h1Font),
+          title: Text('6. คนอายุ 35 ปีขึ้นไป ได้รับการตรวจสุขภาพประจำปี',
+              style: MyFont.h1Font),
         ),
         ListTile(
-          title: Text('1.1 ครัวเรือนนี้ มีเด็กอายุไม่เกิน 1 ปี หรือไม่', style: MyFont.h2Font,),
+          title: Text(
+            '1.1 ครัวเรือนนี้ มีเด็กอายุไม่เกิน 1 ปี หรือไม่',
+            style: MyFont.h2Font,
+          ),
         ),
         LabeledRadio(
           label: 'มี ... คน',
@@ -42,7 +46,9 @@ class _Survey6State extends State<Survey6> {
           },
         ),
         ListTile(
-          title: Text('1.2 เด็กอายุไม่เกิน 1 ปี มีน้ำหนักแรกเกิด ไม่น้อยกว่า 2,500 กรัม ทุกคน หรือไม่', style: MyFont.h2Font),
+          title: Text(
+              '1.2 เด็กอายุไม่เกิน 1 ปี มีน้ำหนักแรกเกิด ไม่น้อยกว่า 2,500 กรัม ทุกคน หรือไม่',
+              style: MyFont.h2Font),
         ),
         LabeledRadio(
           label: 'ทุกคน',

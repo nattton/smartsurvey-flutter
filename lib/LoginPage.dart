@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'constants/my_font.dart';
-import 'home_page.dart';
+import 'constants/MyFont.dart';
+import 'HomePage.dart';
 
 class LoginPage extends StatefulWidget {
   static String routeName = 'login-page';
@@ -110,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                     Center(
                       child: Text(
                         'ระบบจัดเก็บข้อมูล',
-                        style: TextStyle(color: MyFont.colorMaster, fontSize: 20.0),
+                        style: TextStyle(
+                            color: MyFont.colorMaster, fontSize: 20.0),
                       ),
                     ),
                     SizedBox(height: 8.0),

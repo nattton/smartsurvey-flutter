@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/constants/my_font.dart';
+import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/widget/labeled_radio.dart';
 
 class Survey2 extends StatefulWidget {
