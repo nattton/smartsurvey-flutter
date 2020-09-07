@@ -1,9 +1,3 @@
-abstract class MapConvertible {
-  Map<dynamic, dynamic> toMap();
-
-  MapConvertible fromMap(Map<dynamic, dynamic> map);
-}
-
 class Family {
   final int id;
   String community;

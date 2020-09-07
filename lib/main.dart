@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/HomePage.dart';
+import 'package:provider/provider.dart';
+import 'package:smartsurveys/constants/MyFont.dart';
+import 'package:smartsurveys/models/User.dart';
+import 'package:smartsurveys/ui/HomePage.dart';
+import 'package:smartsurveys/ui/LoginPage.dart';
+import 'package:smartsurveys/Storage.dart';
+import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
+import 'package:smartsurveys/models/SurveyApp.dart';
+import 'package:smartsurveys/models/SurveyGroup.dart';
 import 'package:smartsurveys/my_constants.dart';
+import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
-import 'LoginPage.dart';
-import 'HomePage.dart';
 
 void main() {
-  runApp(
-    MyConstants(
-      child: MyApp(),
-    ));
+  runApp(MyConstants(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-
-  final routes = <String, WidgetBuilder>{
-    LoginPage.routeName: (context) => LoginPage(),
-    HomePage.routeName: (context) => HomePage(),
-    SurveyGroupPage.routeName: (context) => SurveyGroupPage(),
-    SurveyMetricPage.routeName: (context) => SurveyMetricPage(),
-    SurveyPage.routeName: (context) => SurveyPage(),
-  };
+  static var provider = SurveyApp(null, null);
 
   MaterialColor createMaterialColor(Color color) {
     List strengths = <double>[.05];
@@ -46,15 +45,123 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Smart Survey',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primarySwatch: createMaterialColor(Color(0xFFF16a00)),
-          fontFamily: 'Consolas'
-      ),
-      home: LoginPage(),
-      routes: routes,
+    return FutureBuilder<Storage>(
+        future: Storage.create(
+          repository: LocalKeyValuePersistence(),
+        ),
+        builder: (context, snapshot) {
+          final repository = snapshot.data;
+          provider = SurveyApp(null, repository);
+          return MultiProvider(
+            providers: [ChangeNotifierProvider.value(value: provider)],
+            child: MaterialApp(
+              title: 'Smart Survey',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                  primarySwatch: createMaterialColor(Color(0xFFF16a00)),
+                  fontFamily: 'Consolas'),
+              home: _checkLogin(),
+              onGenerateRoute: (settings) {
+                return MaterialPageRoute(
+                  builder: (context) {
+                    return _makeRoute(
+                        context: context,
+                        routeName: settings.name,
+                        arguments: settings.arguments);
+                  },
+                  maintainState: true,
+                  fullscreenDialog: false,
+                );
+              },
+            ),
+          );
+        });
+  }
+
+  Widget _checkLogin() {
+    if (provider.user == null) {
+      return LoginPage();
+    }
+    return (provider.user.activation == 1) ? HomePage() : RegisterPage();
+  }
+
+  Widget _makeRoute(
+      {@required BuildContext context,
+      @required String routeName,
+      Object arguments}) {
+    final Widget child = _buildRoute(
+      context: context,
+      routeName: routeName,
+      arguments: arguments,
     );
+    return child;
+  }
+
+  Widget _buildRoute({
+    @required BuildContext context,
+    @required String routeName,
+    Object arguments,
+  }) {
+    switch (routeName) {
+      case '/login':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: LoginPage(),
+        );
+      case '/register':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: RegisterPage(),
+        );
+      case '/home':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: HomePage(),
+        );
+      case '/surveygroup':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SurveyGroupPage(),
+        );
+      case '/surveymetric':
+        final map = arguments as Map<String, dynamic> ?? Map();
+        final sg = map['sg'] as SurveyGroup;
+
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SurveyMetricPage(sg: sg),
+        );
+      case '/survey':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SurveyPage(),
+        );
+      default:
+        return Container();
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class MyFont {
   static Color colorMaster = Color.fromARGB(255, 0, 35, 107);
   static Color colorBG = Color.fromARGB(255, 243, 237, 237);
+  static Color colorBottomBar = Color.fromARGB(255, 4, 31, 93);
   static TextStyle h1Font =
       const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600);
   static TextStyle h2Font = const TextStyle(fontSize: 18.0);

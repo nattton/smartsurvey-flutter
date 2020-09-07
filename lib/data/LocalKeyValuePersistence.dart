@@ -32,6 +32,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smartsurveys/models/User.dart';
 
 import '../Repository.dart';
 
@@ -49,6 +50,14 @@ class LocalKeyValuePersistence implements Repository {
   }
 
   @override
+  void saveUser(String deviceId, User object) async {
+    final prefs = await SharedPreferences.getInstance();
+    final string = JsonEncoder().convert(object);
+
+    await prefs.setString(_generateKey(deviceId, "user"), string);
+  }
+
+  @override
   void saveObject(
       String userId, String key, Map<String, dynamic> object) async {
     final prefs = await SharedPreferences.getInstance();
@@ -61,6 +70,17 @@ class LocalKeyValuePersistence implements Repository {
   void saveString(String userId, String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_generateKey(userId, key), value);
+  }
+
+  @override
+  Future<User> getUser(String deviceId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final objectString = prefs.getString(_generateKey(deviceId, "user"));
+    if (objectString != null) {
+      Map map = json.decode(objectString);
+      return User.fromJson(map);
+    }
+    return null;
   }
 
   @override
@@ -84,6 +104,12 @@ class LocalKeyValuePersistence implements Repository {
   Future<String> getString(String userId, String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_generateKey(userId, key));
+  }
+
+  @override
+  Future<void> removeUser(String deviceId) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_generateKey(deviceId, "user"));
   }
 
   @override

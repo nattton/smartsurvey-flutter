@@ -3,22 +3,24 @@ import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/SurveyMetric.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
-import 'package:smartsurveys/ui/SurveyPage.dart';
 
 class SurveyMetricPage extends StatefulWidget {
-  static String routeName = 'surveymetric-page';
+  final SurveyGroup sg;
+  const SurveyMetricPage({Key key, this.sg}) : super(key: key);
 
   @override
-  _SurveyMetricPageState createState() => _SurveyMetricPageState();
+  _SurveyMetricPageState createState() => _SurveyMetricPageState(sg: sg);
 }
 
 class _SurveyMetricPageState extends State<SurveyMetricPage> {
+  final SurveyGroup sg;
+  _SurveyMetricPageState({this.sg});
+
   final _biggerFont = const TextStyle(fontSize: 18.0);
   QueryCtr _query = QueryCtr();
 
   @override
   Widget build(BuildContext context) {
-    final SurveyGroup sg = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
           title: Text(sg.groupDisplay),
@@ -61,7 +63,7 @@ class _SurveyMetricPageState extends State<SurveyMetricPage> {
           contentPadding: EdgeInsets.all(8.0),
         ),
         onTap: () {
-          Navigator.pushNamed(context, SurveyPage.routeName, arguments: sm);
+          Navigator.of(context).pushNamed("/survey", arguments: sm);
         });
   }
 }

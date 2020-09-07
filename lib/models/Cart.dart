@@ -1,3 +1,5 @@
+import 'package:smartsurveys/models/MapConvertible.dart';
+
 import 'Family.dart';
 import 'WaitingList.dart';
 

@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
-import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 
 class SurveyGroupPage extends StatefulWidget {
-  static String routeName = 'surveygroup-page';
-
   @override
   _SurveyGroupPageState createState() => _SurveyGroupPageState();
 }
@@ -21,40 +18,41 @@ class _SurveyGroupPageState extends State<SurveyGroupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('หมวดรายการสำรวจ'),
+      appBar: AppBar(
+        title: Text('หมวดรายการสำรวจ'),
+      ),
+      backgroundColor: Colors.white,
+      body: Container(
+        padding: EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/bgimage.png"),
+            fit: BoxFit.cover,
+          ),
         ),
-        backgroundColor: Colors.white,
-        body: Container(
-            padding: EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/bgimage.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Container(
-                decoration: BoxDecoration(
-                    color: MyFont.colorBG,
-                    borderRadius:
-                    new BorderRadius.all(const Radius.circular(30.0))
-                ),
-                child: FutureBuilder<List>(
-                  future: _query.getAllSurveyGroups(),
-                  initialData: List(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? new ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, i) {
-                              return _buildRow(snapshot.data[i]);
-                            },
-                          )
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  },
-                ))));
+        child: Container(
+          decoration: BoxDecoration(
+              color: MyFont.colorBG,
+              borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
+          child: FutureBuilder<List>(
+            future: _query.getAllSurveyGroups(),
+            initialData: List(),
+            builder: (context, snapshot) {
+              return snapshot.hasData
+                  ? new ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, i) {
+                        return _buildRow(snapshot.data[i]);
+                      },
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildRow(SurveyGroup sg) {
@@ -66,7 +64,7 @@ class _SurveyGroupPageState extends State<SurveyGroupPage> {
         contentPadding: EdgeInsets.all(16.0),
       ),
       onTap: () {
-        Navigator.pushNamed(context, SurveyMetricPage.routeName, arguments: sg);
+        Navigator.of(context).pushNamed("/surveymetric", arguments: {'sg': sg});
       },
     );
   }
