@@ -75,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     controller: _passwordController,
                     autofocus: false,
+                    obscureText: true,
                     decoration: InputDecoration(
                         labelText: 'Password',
                         contentPadding:
@@ -108,8 +109,14 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text('กรุณากรอก Username และ Password'),
-            );
+                title: Text("แจ้งเตือน"),
+                content: Text('กรุณากรอก Username และ Password'),
+                actions: [
+                  FlatButton(
+                    child: Text("ปิด"),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ]);
           });
       return;
     }
@@ -121,7 +128,14 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
+              title: Text("แจ้งเตือน"),
               content: Text('Username หรือ Password ไม่ถูกต้อง'),
+              actions: [
+                FlatButton(
+                  child: Text("ปิด"),
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              ],
             );
           });
     } else if (user.status == 1) {
