@@ -1,22 +1,22 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
-import 'package:smartsurveys/database/QueryCtr.dart';
-import 'package:smartsurveys/models/SurveyGroup.dart';
+import 'package:smartsurveys/data/AppService.dart';
+import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/SurveyApp.dart';
 
-class SurveyGroupPage extends StatefulWidget {
+class CommunityPage extends StatefulWidget {
   @override
-  _SurveyGroupPageState createState() => _SurveyGroupPageState();
+  _CommunityPageState createState() => _CommunityPageState();
 }
 
-class _SurveyGroupPageState extends State<SurveyGroupPage> {
+class _CommunityPageState extends State<CommunityPage> {
   final _biggerFont = const TextStyle(fontSize: 18.0);
-  QueryCtr _query = QueryCtr();
 
   @override
   Widget build(BuildContext context) {
+    final app = Provider.of<SurveyApp>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('หมวดรายการสำรวจ'),
@@ -35,7 +35,7 @@ class _SurveyGroupPageState extends State<SurveyGroupPage> {
               color: MyFont.colorBG,
               borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
           child: FutureBuilder<List>(
-            future: _query.getAllSurveyGroups(),
+            future: AppService.getCommunity(app.user),
             initialData: List(),
             builder: (context, snapshot) {
               return snapshot.hasData
@@ -55,16 +55,34 @@ class _SurveyGroupPageState extends State<SurveyGroupPage> {
     );
   }
 
-  Widget _buildRow(SurveyGroup sg) {
-    Uint8List byte = base64.decode(sg.groupImage);
+  Widget _buildRow(CommunityAPI item) {
     return GestureDetector(
       child: new ListTile(
-        title: new Text(sg.groupDisplay, style: _biggerFont),
-        leading: new Image.memory(byte),
-        contentPadding: EdgeInsets.all(16.0),
+        title: new Text("หมู่ที่ ${item.moo} ${item.communityName}",
+            style: _biggerFont),
+        contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
       ),
       onTap: () {
-        Navigator.of(context).pushNamed("/surveymetric", arguments: {'sg': sg});
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: new Text("ยืนยันเลือกชุมชน"),
+              content: new Text(item.communityName),
+              actions: [
+                new FlatButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: new Text("ยกเลิก"),
+                ),
+                new FlatButton(
+                  onPressed: () => Navigator.of(context)
+                      .popAndPushNamed("/newfamily", arguments: {'cm': item}),
+                  child: new Text("ตกลง"),
+                )
+              ],
+            );
+          },
+        );
       },
     );
   }

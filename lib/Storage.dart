@@ -72,7 +72,8 @@ class Storage {
   }
 
   Future<Cart> getAllItemsInCart() async {
-    final cartMap = await _repository.getObject(_user?.uid ?? '', 'cart');
+    final cartMap =
+        await _repository.getObject(_user?.uid.toString() ?? '', 'cart');
     if (cartMap == null || cartMap.isEmpty) {
       return Cart();
     }
@@ -97,11 +98,16 @@ class Storage {
   void saveUser(User user) async {
     _deviceId = await deviceId();
 
-    await _repository.saveString(_deviceId, 'user.fname', user.fname);
-    await _repository.saveString(_deviceId, 'user.uid', user.uid);
+    await _repository.saveUser(_deviceId, user);
 
     _user = user;
     _cart = await getAllItemsInCart();
+  }
+
+  void saveString(String key, String value) async {
+    _deviceId = await deviceId();
+
+    await _repository.saveString(_deviceId, key, value);
   }
 
   Cart getCart(User user) {
@@ -111,28 +117,25 @@ class Storage {
   Future<User> getUser() async {
     _deviceId = await deviceId();
 
-    final fname = await _repository.getString(_deviceId, 'user.fname');
-    final uid = await _repository.getString(_deviceId, 'user.uid');
-    final photo = await _repository.getString(_deviceId, 'user.photo');
-
-    if (fname == null) {
-      return null;
-    }
-
-    final user = User(fname: fname, uid: uid, photo: photo);
+    user = await _repository.getUser(_deviceId);
 
     return user;
+  }
+
+  Future<String> getString(String key) async {
+    _deviceId = await deviceId();
+
+    return await _repository.getString(_deviceId, key);
   }
 
   void logout() async {
     _deviceId = await deviceId();
 
-    await _repository.removeString(_deviceId, 'user.fname');
-    await _repository.removeString(_deviceId, 'user.uid');
-    await _repository.removeString(_deviceId, 'user.photo');
+    await _repository.removeUser(_deviceId);
 
     for (var entry in _cart.itemCounts.entries) {
-      await _repository.removeObject(_user.uid, entry.key.toString());
+      await _repository.removeObject(
+          _user.uid.toString(), entry.key.toString());
     }
 
     _user = null;
@@ -140,7 +143,7 @@ class Storage {
   }
 
   void _saveCart() async {
-    await _repository.saveObject(_user.uid, 'cart', _cart.toMap());
+    await _repository.saveObject(_user.uid.toString(), 'cart', _cart.toMap());
   }
 
   void addToCart(Family item, [int quantity = 1]) async {

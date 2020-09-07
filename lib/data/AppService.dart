@@ -1,0 +1,74 @@
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/SaveUserResponse.dart';
+import 'package:smartsurveys/models/User.dart';
+
+class AppService {
+  static final hostLogin = 'http://cddlogin.ddns.me/api/';
+  static final apiToken = 'Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ=';
+  static Future<User> login(String userName, String password) async {
+    var url = "${hostLogin}mobile.php";
+    var response = await http.post(url, body: {
+      'task': 'login',
+      't': apiToken,
+      'u': userName,
+      'p': password,
+    });
+    debugPrint(response.body);
+    Map map = json.decode(response.body);
+    User user = User.fromJson(map);
+    return user;
+  }
+
+  static Future<SaveUserResponse> saveUserInfo(
+    User user,
+    String prefixID,
+    String name,
+    String sname,
+    String idCard,
+    String phone,
+    String sexId,
+    String birthday,
+    String addr,
+    String provinceCode,
+    String amphurCode,
+    String tumbonCode,
+    String communityID,
+    String signatureImage,
+  ) async {
+    var url = "${hostLogin}mobile.php";
+    var response = await http.post(url, body: {
+      't': apiToken,
+      'token': user.token,
+      'task': 'saveuserinfo',
+      'prefix_id': prefixID,
+      'name': name,
+      'sname': sname,
+      'idcard': idCard,
+      'phone': phone,
+      'sex_id': sexId,
+      'birthday': birthday,
+      'addr': addr,
+      'province_code': provinceCode,
+      'amphur_code': amphurCode,
+      'district_code': tumbonCode,
+      'community_id': communityID,
+      'photo_signature': signatureImage,
+    });
+    debugPrint(response.body);
+    Map map = json.decode(response.body);
+    SaveUserResponse userResponse = SaveUserResponse.fromJson(map);
+    return userResponse;
+  }
+
+  static Future<List<CommunityAPI>> getCommunity(User user) async {
+    var url =
+        "${hostLogin}mobile.php?t=$apiToken&task=getcommunity&token=${user.token}";
+    var response = await http.get(url);
+    debugPrint(response.body);
+    List<dynamic> listMap = json.decode(response.body);
+    return listMap.map((m) => CommunityAPI.fromJson(m)).toList();
+  }
+}
