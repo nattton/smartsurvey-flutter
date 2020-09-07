@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:intl/intl.dart';
@@ -46,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _idCardController = TextEditingController();
   final TextEditingController _birthDateController = TextEditingController();
-  final TextEditingController _telController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
   ByteData _img = ByteData(0);
@@ -206,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   _decorateDropdown(_dropdownGender()),
                   SizedBox(height: 24.0),
                   TextField(
-                    controller: _telController,
+                    controller: _phoneController,
                     autofocus: false,
                     decoration: InputDecoration(
                         labelText: 'เบอร์โทรศัพท์',
@@ -560,7 +559,7 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    if (_telController.text == "") {
+    if (_phoneController.text == "") {
       showDialog(
           context: context,
           builder: (context) {
@@ -637,11 +636,14 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
+    final app = Provider.of<SurveyApp>(context);
     final saveUserResponse = await AppService.saveUserInfo(
+      app.user,
       _prefix.code,
       _firstNameController.text,
       _lastNameController.text,
       _idCardController.text,
+      _phoneController.text,
       _gender.code,
       _birthDateController.text,
       _addressController.text,
@@ -659,8 +661,7 @@ class _RegisterPageState extends State<RegisterPage> {
             content: Text(saveUserResponse.message),
           );
         });
-    if (saveUserResponse.status == "1") {
-      final app = Provider.of<SurveyApp>(context);
+    if (saveUserResponse.status == 1) {
       final repo = app.storage;
       final username = await repo.getString("username");
       final password = await repo.getString("password");

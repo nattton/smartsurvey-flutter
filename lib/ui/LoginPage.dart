@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _usernameController,
                     autofocus: false,
                     decoration: InputDecoration(
-                        hintText: 'Username',
+                        labelText: 'Username',
                         contentPadding:
                             EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                         border: OutlineInputBorder(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     autofocus: false,
                     decoration: InputDecoration(
-                        hintText: 'Password',
+                        labelText: 'Password',
                         contentPadding:
                             EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                         border: OutlineInputBorder(

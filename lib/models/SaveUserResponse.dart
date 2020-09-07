@@ -8,7 +8,8 @@ class SaveUserResponse {
   SaveUserResponse.fromJson(Map<String, dynamic> json) {
     if (json['status'].runtimeType == String)
       status = int.parse(json['status']);
-    status = json['status'];
+    else
+      status = json['status'];
     confirmid = json['confirmid'];
     message = json['message'];
   }

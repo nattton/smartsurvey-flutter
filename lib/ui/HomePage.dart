@@ -3,8 +3,18 @@ import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url,
+          forceSafariVC: true, forceWebView: true, enableJavaScript: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final app = Provider.of<SurveyApp>(context);
@@ -43,7 +53,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     onTap: () => {
-                      Navigator.of(context).pushNamed("/surveygroup"),
+                      Navigator.of(context).pushNamed("/community"),
                     },
                   ),
                   SizedBox(height: 24.0),
@@ -55,13 +65,17 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 48.0),
-                  Hero(
-                    tag: 'stage_logo',
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 72.0,
-                      child: Image.asset('images/cddlogo.png'),
+                  GestureDetector(
+                    child: Hero(
+                      tag: 'stage_logo',
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 72.0,
+                        child: Image.asset('images/cddlogo.png'),
+                      ),
                     ),
+                    onTap: () => _launchInBrowser(
+                        "http://cdddata.ddns.me/mis/index.php"),
                   ),
                   SizedBox(height: 24.0),
                   Center(

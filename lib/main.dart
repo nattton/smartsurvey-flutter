@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smartsurveys/constants/MyFont.dart';
-import 'package:smartsurveys/models/User.dart';
+import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/ui/CommunityPage.dart';
 import 'package:smartsurveys/ui/HomePage.dart';
 import 'package:smartsurveys/ui/LoginPage.dart';
 import 'package:smartsurveys/Storage.dart';
@@ -9,6 +9,7 @@ import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
 import 'package:smartsurveys/my_constants.dart';
+import 'package:smartsurveys/ui/NewFamilyPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
@@ -129,6 +130,26 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: HomePage(),
+        );
+      case '/community':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: CommunityPage(),
+        );
+      case '/newfamily':
+        final map = arguments as Map<String, dynamic> ?? Map();
+        final cm = map['cm'] as CommunityAPI;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: NewFamilyPage(cm: cm),
         );
       case '/surveygroup':
         return MultiProvider(
