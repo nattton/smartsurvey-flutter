@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
           builder: (context) {
             return AlertDialog(
               title: Text("แจ้งเตือน"),
-              content: Text('Username หรือ Password ไม่ถูกต้อง'),
+              content: Text(user.message),
               actions: [
                 FlatButton(
                   child: Text("ปิด"),
