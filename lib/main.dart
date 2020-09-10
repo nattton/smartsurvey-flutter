@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
+import 'package:smartsurveys/ui/DistrictTypePage.dart';
 import 'package:smartsurveys/ui/HomePage.dart';
 import 'package:smartsurveys/ui/LoginPage.dart';
 import 'package:smartsurveys/Storage.dart';
@@ -150,6 +153,26 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: NewFamilyPage(cm: cm),
+        );
+      case '/districttype':
+        final family = arguments as Family;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: DistrictTypePage(family: family),
+        );
+      case '/arearesidance':
+        final family = arguments as Family;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: AreaResidancePage(family: family),
         );
       case '/surveygroup':
         return MultiProvider(

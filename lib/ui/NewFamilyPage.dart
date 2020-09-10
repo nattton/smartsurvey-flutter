@@ -73,7 +73,7 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
   }
 
   void _reloadAmphurs(String provinceCode) {
-    _query.getAllAmphurs(provinceCode).then((value) {
+    _query.getAmphurs(provinceCode).then((value) {
       setState(() {
         _amphurs = value;
         if (cm.amphurCode != "0") {
@@ -85,7 +85,7 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
   }
 
   void _reloadTumbons(String amphurCode) {
-    _query.getAllTumbons(amphurCode).then((value) {
+    _query.getTumbons(amphurCode).then((value) {
       setState(() {
         _tumbons = value;
         if (cm.tumbonCode != "0") {
@@ -97,7 +97,7 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
   }
 
   void _reloadCommunities(String tumbonCode) {
-    _query.getAllCommunities(tumbonCode).then((value) {
+    _query.getCommunities(tumbonCode).then((value) {
       setState(() {
         _communities = value;
         if (cm.communityId != "0") {
@@ -483,6 +483,6 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     family.hamphur = _amphur.code;
     family.hprovince = _province.code;
 
-    Navigator.of(context).pushNamed("/surveygroup");
+    Navigator.of(context).pushNamed("/districttype", arguments: family);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:smartsurveys/models/Amphur.dart';
 import 'package:smartsurveys/models/Community.dart';
+import 'package:smartsurveys/models/DistrictType.dart';
 import 'package:smartsurveys/models/Gender.dart';
 import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Province.dart';
@@ -40,7 +41,7 @@ class QueryCtr {
     return list;
   }
 
-  Future<List<Amphur>> getAllAmphurs(String provinceCode) async {
+  Future<List<Amphur>> getAmphurs(String provinceCode) async {
     final Database db = await con.db;
     final List<Map<String, dynamic>> maps = await db.query(
       Amphur.tableName,
@@ -54,7 +55,7 @@ class QueryCtr {
     return list;
   }
 
-  Future<List<Tumbon>> getAllTumbons(String amphurCode) async {
+  Future<List<Tumbon>> getTumbons(String amphurCode) async {
     final Database db = await con.db;
     final List<Map<String, dynamic>> maps = await db.query(
       Tumbon.tableName,
@@ -68,7 +69,7 @@ class QueryCtr {
     return list;
   }
 
-  Future<List<Community>> getAllCommunities(String tumbonCode) async {
+  Future<List<Community>> getCommunities(String tumbonCode) async {
     final Database db = await con.db;
     final List<Map<String, dynamic>> maps = await db.query(
       Community.tableName,
@@ -78,6 +79,20 @@ class QueryCtr {
     );
     final list = List<Community>.generate(maps.length, (i) {
       return Community.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<DistrictType>> getDistrictTypes(String amphurCode) async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps = await db.query(
+      DistrictType.tableName,
+      where: 'amphur_id = ?',
+      whereArgs: [amphurCode],
+      orderBy: 'id',
+    );
+    final list = List<DistrictType>.generate(maps.length, (i) {
+      return DistrictType.fromMap(maps[i]);
     });
     return list;
   }
