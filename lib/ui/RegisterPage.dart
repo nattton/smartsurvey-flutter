@@ -66,6 +66,11 @@ class _RegisterPageState extends State<RegisterPage> {
         _genders = value;
       });
     });
+
+    _reloadProvinces();
+  }
+
+  void _reloadProvinces() {
     _query.getAllProvinces().then((value) {
       setState(() {
         _provinces = value;

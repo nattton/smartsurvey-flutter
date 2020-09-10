@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +8,7 @@ import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Amphur.dart';
 import 'package:smartsurveys/models/Community.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
-import 'package:smartsurveys/models/Prefix.dart';
+import 'package:smartsurveys/models/Family.dart';
 import 'package:smartsurveys/models/Province.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/Tumbon.dart';
@@ -16,8 +18,9 @@ import 'package:smartsurveys/widgets/labeled_radio.dart';
 class NewFamilyPage extends StatefulWidget {
   final CommunityAPI cm;
   const NewFamilyPage({Key key, this.cm}) : super(key: key);
+
   @override
-  _NewFamilyPageState createState() => _NewFamilyPageState();
+  _NewFamilyPageState createState() => _NewFamilyPageState(cm: cm);
 }
 
 class _NewFamilyPageState extends State<NewFamilyPage> {
@@ -31,7 +34,6 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
   List<Tumbon> _tumbons = [];
   List<Community> _communities = [];
 
-  Prefix _prefix;
   Province _province;
   Amphur _amphur;
   Tumbon _tumbon;
@@ -39,6 +41,8 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
 
   bool _hasHomeNo = true;
   String _labelHomeNo = "เลขที่";
+  final TextEditingController _homeCodeController = TextEditingController();
+  final TextEditingController _homeIDController = TextEditingController();
   final TextEditingController _homeNoController = TextEditingController();
   final TextEditingController _soiController = TextEditingController();
   final TextEditingController _roadController = TextEditingController();
@@ -47,9 +51,23 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
   @override
   void initState() {
     super.initState();
+
+    _reloadProvinces();
+
+    if (cm.communityId != "0") {
+      _homeCodeController.text = cm.amphurCode;
+      _mooController.text = cm.moo;
+    }
+  }
+
+  void _reloadProvinces() {
     _query.getAllProvinces().then((value) {
       setState(() {
         _provinces = value;
+        if (cm.provinceCode != "0") {
+          _province = _provinces.firstWhere((e) => e.code == cm.provinceCode);
+          _reloadAmphurs(_province.code);
+        }
       });
     });
   }
@@ -58,6 +76,10 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     _query.getAllAmphurs(provinceCode).then((value) {
       setState(() {
         _amphurs = value;
+        if (cm.amphurCode != "0") {
+          _amphur = _amphurs.firstWhere((e) => e.code == cm.amphurCode);
+          _reloadTumbons(_amphur.code);
+        }
       });
     });
   }
@@ -66,6 +88,10 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     _query.getAllTumbons(amphurCode).then((value) {
       setState(() {
         _tumbons = value;
+        if (cm.tumbonCode != "0") {
+          _tumbon = _tumbons.firstWhere((e) => e.code == cm.tumbonCode);
+          _reloadCommunities(_tumbon.code);
+        }
       });
     });
   }
@@ -74,6 +100,9 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     _query.getAllCommunities(tumbonCode).then((value) {
       setState(() {
         _communities = value;
+        if (cm.communityId != "0") {
+          _community = _communities.firstWhere((e) => e.code == cm.communityId);
+        }
       });
     });
   }
@@ -134,10 +163,11 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
                           width: 140,
                           child: TextField(
                               maxLength: 4,
-                              controller: _roadController,
+                              controller: _homeCodeController,
                               autofocus: false,
+                              readOnly: cm.amphurCode != "",
                               decoration: InputDecoration(
-                                labelText: 'รหัสครอบครัว',
+                                labelText: 'รหัสอำเภอ',
                                 filled: true,
                                 fillColor: Colors.white,
                                 contentPadding:
@@ -153,7 +183,7 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
                       Flexible(
                           child: TextField(
                               maxLength: 7,
-                              controller: _roadController,
+                              controller: _homeIDController,
                               autofocus: false,
                               decoration: InputDecoration(
                                 labelText: 'รหัสประจำบ้าน',
@@ -211,16 +241,26 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
                   ),
                 ),
                 SizedBox(height: 12.0),
-                _decorateDropdown(_dropdownProvince()),
+                IgnorePointer(
+                  ignoring: cm.provinceCode != "0",
+                  child: _decorateDropdown(_dropdownProvince()),
+                ),
                 SizedBox(height: 24.0),
-                _decorateDropdown(_dropdownAmphur()),
+                IgnorePointer(
+                  ignoring: cm.amphurCode != "0",
+                  child: _decorateDropdown(_dropdownAmphur()),
+                ),
                 SizedBox(height: 24.0),
-                _decorateDropdown(_dropdownTumbon()),
+                IgnorePointer(
+                  ignoring: cm.tumbonCode != "0",
+                  child: _decorateDropdown(_dropdownTumbon()),
+                ),
                 SizedBox(height: 24.0),
                 TextField(
                     maxLength: 3,
                     controller: _mooController,
                     autofocus: false,
+                    readOnly: cm.communityId != "0",
                     decoration: InputDecoration(
                       labelText: 'หมู่',
                       filled: true,
@@ -235,13 +275,16 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
                       FilteringTextInputFormatter.digitsOnly
                     ]),
                 SizedBox(height: 24.0),
-                _decorateDropdown(_dropdownCommunity()),
+                IgnorePointer(
+                  ignoring: cm.communityId != "0",
+                  child: _decorateDropdown(_dropdownCommunity()),
+                ),
                 SizedBox(height: 24.0),
                 PillShapedButton(
                   title: "ถัดไป",
                   color: Theme.of(context).primaryColor,
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/surveygroup");
+                    _newFamily(context);
                   },
                 ),
                 SizedBox(height: 24.0),
@@ -350,13 +393,19 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     );
   }
 
-  void _saveUserInfo(BuildContext context) async {
-    if (_prefix == null) {
+  void _newFamily(BuildContext context) async {
+    if (_hasHomeNo && _homeIDController.text == "") {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text("กรุณากรอกคำนำหน้า"),
+              title: Text("แจ้งเตือน"),
+              content: Text("กรุณากรอกรหัสประจำบ้าน"),
+              actions: [
+                FlatButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text("ตกลง")),
+              ],
             );
           });
       return;
@@ -367,40 +416,13 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text("กรุณากรอกชื่อ"),
-            );
-          });
-      return;
-    }
-
-    if (_soiController.text == "") {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text("กรุณากรอกนามสกุล"),
-            );
-          });
-      return;
-    }
-
-    if (_roadController.text.length < 13) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text("กรุณากรอกเลขบัตรประชาชนให้ถูกต้อง"),
-            );
-          });
-      return;
-    }
-
-    if (_mooController.text == "") {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text("กรุณากรอกเบอร์โทรศัพท์"),
+              title: Text("แจ้งเตือน"),
+              content: Text("กรุณากรอกเลขที่บ้าน"),
+              actions: [
+                FlatButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text("ตกลง")),
+              ],
             );
           });
       return;
@@ -449,5 +471,18 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
           });
       return;
     }
+
+    var random = new Random();
+    Family family = new Family(random.nextInt(99999));
+    family.hid = _homeCodeController.text + _homeIDController.text;
+    family.community = _community.code;
+    family.hnum = _homeNoController.text;
+    family.haddr =
+        "${_mooController.text},${_soiController.text},${_roadController.text}";
+    family.htumbon = _tumbon.code;
+    family.hamphur = _amphur.code;
+    family.hprovince = _province.code;
+
+    Navigator.of(context).pushNamed("/surveygroup");
   }
 }
