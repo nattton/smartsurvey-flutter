@@ -5,18 +5,17 @@ import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Family.dart';
 import 'package:smartsurveys/models/LandRights.dart';
 
-class AreaResidancePage extends StatefulWidget {
+class AreaCareerPage extends StatefulWidget {
   final Family family;
-  AreaResidancePage({key, this.family}) : super(key: key);
+  AreaCareerPage({key, this.family}) : super(key: key);
 
   @override
-  _AreaResidancePageState createState() =>
-      _AreaResidancePageState(family: family);
+  _AreaCareerPageState createState() => _AreaCareerPageState(family: family);
 }
 
-class _AreaResidancePageState extends State<AreaResidancePage> {
+class _AreaCareerPageState extends State<AreaCareerPage> {
   final Family family;
-  _AreaResidancePageState({this.family});
+  _AreaCareerPageState({this.family});
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
@@ -45,7 +44,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ที่พักอาศัยตั้งอยู่บน'),
+        title: Text('ที่ดินใช้ประกอบอาชีพ'),
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -111,6 +110,23 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                     }),
                 Text("อื่น ๆ ระบุ")
               ]),
+              Row(children: [
+                Radio(
+                    value: "5",
+                    groupValue: _arealive,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _arealive = newValue;
+                      });
+                      _selectNonArea(context);
+                    }),
+                Text("ไม่มี")
+              ]),
+              Container(
+                margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+                child: Text(
+                    "(ไม่รวมที่ดินให้เช่าหรือที่ดินสำหรับการทำกิจกรรมอื่น ๆ ที่ไม่เกี่ยวข้องกับการประกอบอาชีพ)"),
+              ),
             ],
           ),
         ),
@@ -450,6 +466,35 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                       })
                 ],
               )
+            ],
+          );
+        });
+  }
+
+  void _selectNonArea(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("ยืนยัน"),
+            content: Text("ไม่มีที่ดินใช้ประกอบอาชีพ"),
+            actions: [
+              FlatButton(
+                child: Text("ปิด"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    _arealive = null;
+                  });
+                },
+              ),
+              FlatButton(
+                  child: Text("บันทึก"),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed("/areacareer", arguments: family);
+                  }),
             ],
           );
         });
