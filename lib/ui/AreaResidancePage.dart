@@ -97,6 +97,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
     TextEditingController rai;
     TextEditingController wah;
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -159,7 +160,12 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
               Row(
                 children: [
                   FlatButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        setState(() {
+                          _arealive = null;
+                        });
+                      },
                       child: Text("ออก")),
                   FlatButton(
                       child: Text("บันทึก"),

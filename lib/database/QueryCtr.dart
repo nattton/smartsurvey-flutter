@@ -3,6 +3,7 @@ import 'package:smartsurveys/models/Amphur.dart';
 import 'package:smartsurveys/models/Community.dart';
 import 'package:smartsurveys/models/DistrictType.dart';
 import 'package:smartsurveys/models/Gender.dart';
+import 'package:smartsurveys/models/LandRights.dart';
 import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Province.dart';
 import 'package:smartsurveys/models/SurveyMetric.dart';
@@ -93,6 +94,18 @@ class QueryCtr {
     );
     final list = List<DistrictType>.generate(maps.length, (i) {
       return DistrictType.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<LandRights>> getAllLandRights() async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps = await db.query(
+      LandRights.tableName,
+      orderBy: 'id',
+    );
+    final list = List<LandRights>.generate(maps.length, (i) {
+      return LandRights.fromMap(maps[i]);
     });
     return list;
   }
