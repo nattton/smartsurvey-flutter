@@ -33,7 +33,7 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'Repository.dart';
 
-import 'models/Family.dart';
+import 'models/Home.dart';
 import 'models/Cart.dart';
 import 'models/User.dart';
 
@@ -146,17 +146,17 @@ class Storage {
     await _repository.saveObject(_user.uid.toString(), 'cart', _cart.toMap());
   }
 
-  void addToCart(Family item, [int quantity = 1]) async {
+  void addToCart(Home item, [int quantity = 1]) async {
     _cart.add(item);
     _saveCart();
   }
 
-  void incrementInCart(Family item) async {
+  void incrementInCart(Home item) async {
     _cart.increment(item);
     _saveCart();
   }
 
-  void decrementInCart(Family item) async {
+  void decrementInCart(Home item) async {
     final int count = _cart.decrement(item);
     if (count == null || count <= 0) {
       _cart.remove(item);
@@ -165,7 +165,7 @@ class Storage {
     _saveCart();
   }
 
-  void setItemCountInCart(Family item, int quantity) async {
+  void setItemCountInCart(Home item, int quantity) async {
     _saveCart();
   }
 }

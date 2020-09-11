@@ -28,14 +28,14 @@
  * THE SOFTWARE.
  */
 
-import 'Family.dart';
+import 'Home.dart';
 
 class WaitingList {
-  final List<Family> items;
+  final List<Home> items;
 
   WaitingList(this.items);
 
-  Family itemForId(int id) {
+  Home itemForId(int id) {
     return items.firstWhere((item) => item.id == id);
   }
 }

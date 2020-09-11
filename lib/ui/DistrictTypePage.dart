@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/DistrictType.dart';
-import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/models/Home.dart';
 
 class DistrictTypePage extends StatefulWidget {
-  final Family family;
-  DistrictTypePage({key, this.family}) : super(key: key);
+  final Home home;
+  DistrictTypePage({key, this.home}) : super(key: key);
 
   @override
-  _DistrictTypePageState createState() =>
-      _DistrictTypePageState(family: family);
+  _DistrictTypePageState createState() => _DistrictTypePageState(home: home);
 }
 
 class _DistrictTypePageState extends State<DistrictTypePage> {
-  final Family family;
-  _DistrictTypePageState({this.family});
+  final Home home;
+  _DistrictTypePageState({this.home});
 
   QueryCtr _query = QueryCtr();
 
@@ -41,7 +40,7 @@ class _DistrictTypePageState extends State<DistrictTypePage> {
               color: MyFont.colorBG,
               borderRadius: new BorderRadius.all(const Radius.circular(30.0))),
           child: FutureBuilder<List>(
-            future: _query.getDistrictTypes(family.hamphur),
+            future: _query.getDistrictTypes(home.hamphur),
             initialData: List(),
             builder: (context, snapshot) {
               return snapshot.hasData
@@ -68,8 +67,8 @@ class _DistrictTypePageState extends State<DistrictTypePage> {
         contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
       ),
       onTap: () {
-        family.harea = item.id.toString();
-        Navigator.of(context).pushNamed("/arearesidance", arguments: family);
+        home.harea = item.id.toString();
+        Navigator.of(context).pushNamed("/arearesidance", arguments: home);
       },
     );
   }

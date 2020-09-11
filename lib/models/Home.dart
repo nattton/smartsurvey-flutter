@@ -1,6 +1,6 @@
 import 'package:smartsurveys/models/Member.dart';
 
-class Family {
+class Home {
   int id;
   bool valid = false;
   bool startSurvey = false;
@@ -21,5 +21,5 @@ class Family {
   String longitude;
   List<Member> hmember;
   Map<String, String> answer;
-  Family(this.id, {this.hid, this.community, this.answer});
+  Home(this.id, {this.hid, this.community, this.answer});
 }

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
-import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/LandRights.dart';
 
 class AreaCareerPage extends StatefulWidget {
-  final Family family;
-  AreaCareerPage({key, this.family}) : super(key: key);
+  final Home home;
+  AreaCareerPage({key, this.home}) : super(key: key);
 
   @override
-  _AreaCareerPageState createState() => _AreaCareerPageState(family: family);
+  _AreaCareerPageState createState() => _AreaCareerPageState(home: home);
 }
 
 class _AreaCareerPageState extends State<AreaCareerPage> {
-  final Family family;
-  _AreaCareerPageState({this.family});
+  final Home home;
+  _AreaCareerPageState({this.home});
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
@@ -251,10 +251,9 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "1,${_raiController.text},${_wahController.text},{$_landRight.code}";
-                          Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                          _saveFamily(context);
                         });
                       })
                 ],
@@ -348,10 +347,9 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "$value,${_raiController.text},${_wahController.text}";
-                          Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                          _saveFamily(context);
                         });
                       })
                 ],
@@ -458,10 +456,9 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "4,${_raiController.text},${_wahController.text},${_otherController.text}";
-                          Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                          _saveFamily(context);
                         });
                       })
                 ],
@@ -492,11 +489,16 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
               FlatButton(
                   child: Text("บันทึก"),
                   onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed("/areacareer", arguments: family);
+                    home.hlive = "5";
+                    _saveFamily(context);
                   }),
             ],
           );
         });
+  }
+
+  void _saveFamily(BuildContext context) async {
+    Navigator.of(context)
+        .pushReplacementNamed("/membersurvey", arguments: {"hid", home.hid});
   }
 }

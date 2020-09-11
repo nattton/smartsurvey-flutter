@@ -8,24 +8,24 @@ import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Amphur.dart';
 import 'package:smartsurveys/models/Community.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
-import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/Province.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/Tumbon.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/labeled_radio.dart';
 
-class NewFamilyPage extends StatefulWidget {
+class NewHomePage extends StatefulWidget {
   final CommunityAPI cm;
-  const NewFamilyPage({Key key, this.cm}) : super(key: key);
+  const NewHomePage({Key key, this.cm}) : super(key: key);
 
   @override
-  _NewFamilyPageState createState() => _NewFamilyPageState(cm: cm);
+  _NewHomePageState createState() => _NewHomePageState(cm: cm);
 }
 
-class _NewFamilyPageState extends State<NewFamilyPage> {
+class _NewHomePageState extends State<NewHomePage> {
   final CommunityAPI cm;
-  _NewFamilyPageState({this.cm});
+  _NewHomePageState({this.cm});
 
   QueryCtr _query = QueryCtr();
 
@@ -473,7 +473,7 @@ class _NewFamilyPageState extends State<NewFamilyPage> {
     }
 
     var random = new Random();
-    Family family = new Family(random.nextInt(99999));
+    Home family = new Home(random.nextInt(99999));
     family.hid = _homeCodeController.text + _homeIDController.text;
     family.community = _community.code;
     family.hnum = _homeNoController.text;

@@ -1,6 +1,6 @@
 import 'package:smartsurveys/models/MapConvertible.dart';
 
-import 'Family.dart';
+import 'Home.dart';
 import 'WaitingList.dart';
 
 class Cart implements MapConvertible {
@@ -13,7 +13,7 @@ class Cart implements MapConvertible {
     _itemCounts = Map();
   }
 
-  Family itemAtIndex(int index) {
+  Home itemAtIndex(int index) {
     final id = _itemCounts.keys.toList()[index];
     return _store.itemForId(int.parse(id));
   }
@@ -22,7 +22,7 @@ class Cart implements MapConvertible {
     return _itemCounts.values.toList()[index];
   }
 
-  void add(Family item, [int quantity = 1]) {
+  void add(Home item, [int quantity = 1]) {
     var count = _itemCounts[item.id.toString()];
 
     if (count != null) {
@@ -34,11 +34,11 @@ class Cart implements MapConvertible {
     _itemCounts[item.id.toString()] = count;
   }
 
-  void setCount(Family item, int quantity) {
+  void setCount(Home item, int quantity) {
     _itemCounts[item.id.toString()] = quantity;
   }
 
-  void increment(Family item) {
+  void increment(Home item) {
     var count = _itemCounts[item.id.toString()];
 
     if (count != null) {
@@ -48,7 +48,7 @@ class Cart implements MapConvertible {
     _itemCounts[item.id.toString()] = count;
   }
 
-  int decrement(Family item) {
+  int decrement(Home item) {
     var count = _itemCounts[item.id.toString()];
 
     if (count != null) {
@@ -60,7 +60,7 @@ class Cart implements MapConvertible {
     return count;
   }
 
-  void remove(Family item) {
+  void remove(Home item) {
     _itemCounts.remove(item.id.toString());
   }
 

@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
-import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/LandRights.dart';
 
 class AreaResidancePage extends StatefulWidget {
-  final Family family;
-  AreaResidancePage({key, this.family}) : super(key: key);
+  final Home home;
+  AreaResidancePage({key, this.home}) : super(key: key);
 
   @override
-  _AreaResidancePageState createState() =>
-      _AreaResidancePageState(family: family);
+  _AreaResidancePageState createState() => _AreaResidancePageState(home: home);
 }
 
 class _AreaResidancePageState extends State<AreaResidancePage> {
-  final Family family;
-  _AreaResidancePageState({this.family});
+  final Home home;
+  _AreaResidancePageState({this.home});
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
@@ -235,10 +234,10 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "1,${_raiController.text},${_wahController.text},{$_landRight.code}";
                           Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                              .pushNamed("/areacareer", arguments: home);
                         });
                       })
                 ],
@@ -332,10 +331,10 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "$value,${_raiController.text},${_wahController.text}";
                           Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                              .pushNamed("/areacareer", arguments: home);
                         });
                       })
                 ],
@@ -442,10 +441,10 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         }
 
                         setState(() {
-                          family.hlive =
+                          home.hlive =
                               "4,${_raiController.text},${_wahController.text},${_otherController.text}";
                           Navigator.of(context)
-                              .pushNamed("/areacareer", arguments: family);
+                              .pushNamed("/areacareer", arguments: home);
                         });
                       })
                 ],

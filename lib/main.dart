@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
-import 'package:smartsurveys/models/Family.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/ui/AreaCareerPage.dart';
 import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
@@ -13,7 +13,7 @@ import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
 import 'package:smartsurveys/my_constants.dart';
-import 'package:smartsurveys/ui/NewFamilyPage.dart';
+import 'package:smartsurveys/ui/NewHomePage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
@@ -144,7 +144,7 @@ class MyApp extends StatelessWidget {
           ],
           child: CommunityPage(),
         );
-      case '/newfamily':
+      case '/newhome':
         final map = arguments as Map<String, dynamic> ?? Map();
         final cm = map['cm'] as CommunityAPI;
         return MultiProvider(
@@ -153,37 +153,37 @@ class MyApp extends StatelessWidget {
               value: provider,
             )
           ],
-          child: NewFamilyPage(cm: cm),
+          child: NewHomePage(cm: cm),
         );
       case '/districttype':
-        final family = arguments as Family;
+        final family = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: DistrictTypePage(family: family),
+          child: DistrictTypePage(home: family),
         );
       case '/arearesidance':
-        final family = arguments as Family;
+        final family = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: AreaResidancePage(family: family),
+          child: AreaResidancePage(home: family),
         );
       case '/areacareer':
-        final family = arguments as Family;
+        final family = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: AreaCareerPage(family: family),
+          child: AreaCareerPage(home: family),
         );
       case '/surveygroup':
         return MultiProvider(

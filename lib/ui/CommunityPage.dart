@@ -76,7 +76,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 ),
                 new FlatButton(
                   onPressed: () => Navigator.of(context)
-                      .popAndPushNamed("/newfamily", arguments: {'cm': item}),
+                      .popAndPushNamed("/newhome", arguments: {'cm': item}),
                   child: new Text("ตกลง"),
                 )
               ],
