@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/LandRights.dart';
+import 'package:smartsurveys/models/SurveyApp.dart';
 
 class AreaCareerPage extends StatefulWidget {
   final Home home;
@@ -250,11 +252,9 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                           return;
                         }
 
-                        setState(() {
-                          home.hlive =
-                              "1,${_raiController.text},${_wahController.text},{$_landRight.code}";
-                          _saveFamily(context);
-                        });
+                        home.hlive =
+                            "1,${_raiController.text},${_wahController.text},{$_landRight.code}";
+                        _saveFamily(context);
                       })
                 ],
               )
@@ -346,11 +346,9 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                           return;
                         }
 
-                        setState(() {
-                          home.hlive =
-                              "$value,${_raiController.text},${_wahController.text}";
-                          _saveFamily(context);
-                        });
+                        home.hlive =
+                            "$value,${_raiController.text},${_wahController.text}";
+                        _saveFamily(context);
                       })
                 ],
               )
@@ -449,17 +447,14 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                       child: Text("ออก")),
                   FlatButton(
                       child: Text("บันทึก"),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_raiController.text == "" ||
                             _raiController.text == "") {
                           return;
                         }
-
-                        setState(() {
-                          home.hlive =
-                              "4,${_raiController.text},${_wahController.text},${_otherController.text}";
-                          _saveFamily(context);
-                        });
+                        home.hlive =
+                            "4,${_raiController.text},${_wahController.text},${_otherController.text}";
+                        _saveFamily(context);
                       })
                 ],
               )
@@ -497,8 +492,11 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
         });
   }
 
-  void _saveFamily(BuildContext context) async {
-    Navigator.of(context)
-        .pushReplacementNamed("/membersurvey", arguments: {"hid", home.hid});
+  void _saveFamily(BuildContext context) {
+    // await Navigator.popUntil(context, ModalRoute.withName('/home'));
+    // await Navigator.pushNamed(context, '/home');
+    // await Navigator.of(context).pushNamed("/member", arguments: home);
+    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.of(context).pushNamed("/member", arguments: home);
   }
 }

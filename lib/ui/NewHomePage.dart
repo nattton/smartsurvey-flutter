@@ -13,7 +13,7 @@ import 'package:smartsurveys/models/Province.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/Tumbon.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
-import 'package:smartsurveys/widgets/labeled_radio.dart';
+import 'package:smartsurveys/widgets/LabeledRadio.dart';
 
 class NewHomePage extends StatefulWidget {
   final CommunityAPI cm;
@@ -472,17 +472,17 @@ class _NewHomePageState extends State<NewHomePage> {
       return;
     }
 
-    var random = new Random();
-    Home family = new Home(random.nextInt(99999));
-    family.hid = _homeCodeController.text + _homeIDController.text;
-    family.community = _community.code;
-    family.hnum = _homeNoController.text;
-    family.haddr =
+    Home home = new Home(
+        id: DateTime.now().millisecondsSinceEpoch, hmember: [], answer: {});
+    home.hid = _homeCodeController.text + _homeIDController.text;
+    home.community = _community.code;
+    home.hnum = _homeNoController.text;
+    home.haddr =
         "${_mooController.text},${_soiController.text},${_roadController.text}";
-    family.htumbon = _tumbon.code;
-    family.hamphur = _amphur.code;
-    family.hprovince = _province.code;
+    home.htumbon = _tumbon.code;
+    home.hamphur = _amphur.code;
+    home.hprovince = _province.code;
 
-    Navigator.of(context).pushNamed("/districttype", arguments: family);
+    Navigator.of(context).pushNamed("/districttype", arguments: home);
   }
 }

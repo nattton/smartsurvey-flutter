@@ -12,12 +12,15 @@ import 'package:smartsurveys/Storage.dart';
 import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
-import 'package:smartsurveys/my_constants.dart';
+import 'package:smartsurveys/MyConstants.dart';
+import 'package:smartsurveys/ui/MemberPage.dart';
 import 'package:smartsurveys/ui/NewHomePage.dart';
+import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
+import 'package:smartsurveys/ui/WaitingPage.dart';
 
 void main() {
   runApp(MyConstants(
@@ -144,6 +147,15 @@ class MyApp extends StatelessWidget {
           ],
           child: CommunityPage(),
         );
+      case '/waiting':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: WaitingPage(),
+        );
       case '/newhome':
         final map = arguments as Map<String, dynamic> ?? Map();
         final cm = map['cm'] as CommunityAPI;
@@ -156,24 +168,24 @@ class MyApp extends StatelessWidget {
           child: NewHomePage(cm: cm),
         );
       case '/districttype':
-        final family = arguments as Home;
+        final home = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: DistrictTypePage(home: family),
+          child: DistrictTypePage(home: home),
         );
       case '/arearesidance':
-        final family = arguments as Home;
+        final home = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: AreaResidancePage(home: family),
+          child: AreaResidancePage(home: home),
         );
       case '/areacareer':
         final family = arguments as Home;
@@ -184,6 +196,26 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: AreaCareerPage(home: family),
+        );
+      case '/member':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: MemberPage(home: home),
+        );
+      case '/newmember':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: NewMemberPage(home: home),
         );
       case '/surveygroup':
         return MultiProvider(

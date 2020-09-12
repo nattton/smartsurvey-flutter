@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
-import 'package:smartsurveys/widgets/labeled_radio.dart';
+import 'package:smartsurveys/widgets/LabeledRadio.dart';
 
 class Survey3 extends StatefulWidget {
   @override

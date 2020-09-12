@@ -31,6 +31,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartsurveys/models/User.dart';
 
@@ -62,7 +63,7 @@ class LocalKeyValuePersistence implements Repository {
       String userId, String key, Map<String, dynamic> object) async {
     final prefs = await SharedPreferences.getInstance();
     final string = JsonEncoder().convert(object);
-
+    debugPrint("saveObject : " + string);
     await prefs.setString(_generateKey(userId, key), string);
   }
 
@@ -95,6 +96,7 @@ class LocalKeyValuePersistence implements Repository {
   Future<Map<String, dynamic>> getObject(String userId, String key) async {
     final prefs = await SharedPreferences.getInstance();
     final objectString = prefs.getString(_generateKey(userId, key));
+    debugPrint(objectString);
     if (objectString != null)
       return JsonDecoder().convert(objectString) as Map<String, dynamic>;
     return null;
