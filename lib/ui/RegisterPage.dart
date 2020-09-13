@@ -66,6 +66,11 @@ class _RegisterPageState extends State<RegisterPage> {
         _genders = value;
       });
     });
+
+    _reloadProvinces();
+  }
+
+  void _reloadProvinces() {
     _query.getAllProvinces().then((value) {
       setState(() {
         _provinces = value;
@@ -74,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _reloadAmphurs(String provinceCode) {
-    _query.getAllAmphurs(provinceCode).then((value) {
+    _query.getAmphurs(provinceCode).then((value) {
       setState(() {
         _amphurs = value;
       });
@@ -82,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _reloadTumbons(String amphurCode) {
-    _query.getAllTumbons(amphurCode).then((value) {
+    _query.getTumbons(amphurCode).then((value) {
       setState(() {
         _tumbons = value;
       });
@@ -90,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _reloadCommunities(String tumbonCode) {
-    _query.getAllCommunities(tumbonCode).then((value) {
+    _query.getCommunities(tumbonCode).then((value) {
       setState(() {
         _communities = value;
       });

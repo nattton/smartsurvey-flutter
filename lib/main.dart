@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/Home.dart';
+import 'package:smartsurveys/ui/AreaCareerPage.dart';
+import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
+import 'package:smartsurveys/ui/DistrictTypePage.dart';
 import 'package:smartsurveys/ui/HomePage.dart';
 import 'package:smartsurveys/ui/LoginPage.dart';
 import 'package:smartsurveys/Storage.dart';
 import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
-import 'package:smartsurveys/my_constants.dart';
-import 'package:smartsurveys/ui/NewFamilyPage.dart';
+import 'package:smartsurveys/MyConstants.dart';
+import 'package:smartsurveys/ui/MemberPage.dart';
+import 'package:smartsurveys/ui/NewHomePage.dart';
+import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
+import 'package:smartsurveys/ui/WaitingPage.dart';
 
 void main() {
   runApp(MyConstants(
@@ -140,7 +147,16 @@ class MyApp extends StatelessWidget {
           ],
           child: CommunityPage(),
         );
-      case '/newfamily':
+      case '/waiting':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: WaitingPage(),
+        );
+      case '/newhome':
         final map = arguments as Map<String, dynamic> ?? Map();
         final cm = map['cm'] as CommunityAPI;
         return MultiProvider(
@@ -149,7 +165,57 @@ class MyApp extends StatelessWidget {
               value: provider,
             )
           ],
-          child: NewFamilyPage(cm: cm),
+          child: NewHomePage(cm: cm),
+        );
+      case '/districttype':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: DistrictTypePage(home: home),
+        );
+      case '/arearesidance':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: AreaResidancePage(home: home),
+        );
+      case '/areacareer':
+        final family = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: AreaCareerPage(home: family),
+        );
+      case '/member':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: MemberPage(home: home),
+        );
+      case '/newmember':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: NewMemberPage(home: home),
         );
       case '/surveygroup':
         return MultiProvider(

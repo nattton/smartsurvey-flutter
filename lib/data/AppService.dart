@@ -57,7 +57,6 @@ class AppService {
       'community_id': communityID,
       'photo_signature': signatureImage,
     });
-    debugPrint(response.body);
     Map map = json.decode(response.body);
     SaveUserResponse userResponse = SaveUserResponse.fromJson(map);
     return userResponse;
@@ -67,7 +66,6 @@ class AppService {
     var url =
         "${hostLogin}mobile.php?t=$apiToken&task=getcommunity&token=${user.token}";
     var response = await http.get(url);
-    debugPrint(response.body);
     List<dynamic> listMap = json.decode(response.body);
     return listMap.map((m) => CommunityAPI.fromJson(m)).toList();
   }

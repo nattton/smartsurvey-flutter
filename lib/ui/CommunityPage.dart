@@ -3,7 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/data/AppService.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/Home.dart';
+import 'package:smartsurveys/models/Member.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
+import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -19,7 +22,7 @@ class _CommunityPageState extends State<CommunityPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('หมวดรายการสำรวจ'),
+        title: Text('สถานะรายการรับผิดชอบ'),
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -52,6 +55,24 @@ class _CommunityPageState extends State<CommunityPage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: MyFont.colorBottomBar,
+        child: Container(
+          decoration: BoxDecoration(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              PillShapedButton(
+                title: 'รายการรอส่ง',
+                color: Colors.orange,
+                onPressed: () async {
+                  Navigator.of(context).pushNamed("/waiting");
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -76,7 +97,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 ),
                 new FlatButton(
                   onPressed: () => Navigator.of(context)
-                      .popAndPushNamed("/newfamily", arguments: {'cm': item}),
+                      .popAndPushNamed("/newhome", arguments: {'cm': item}),
                   child: new Text("ตกลง"),
                 )
               ],

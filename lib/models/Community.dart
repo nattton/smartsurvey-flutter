@@ -25,8 +25,9 @@ class Community {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "tumbon_id": code,
-      "tumbon_name": codename,
+      "community_id": code,
+      "community_moo": moo,
+      "community_name": codename,
     };
   }
 }
