@@ -23,6 +23,7 @@ import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
 import 'package:smartsurveys/ui/WaitingPage.dart';
+import 'package:smartsurveys/widgets/SurveyBody.dart';
 
 void main() {
   runApp(MyConstants(
@@ -271,7 +272,7 @@ class MyApp extends StatelessWidget {
         );
 
       default:
-        return Container();
+        return SurveyBody.build(title: "Page Not Found", child: Container());
     }
   }
 }
