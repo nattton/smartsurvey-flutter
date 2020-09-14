@@ -17,7 +17,7 @@ class _SatisfactionPageState extends State<SatisfactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
     home.satisfaction = (home.satisfaction == null) ? 0 : home.satisfaction;
     _currentValue = home.satisfaction?.toDouble();

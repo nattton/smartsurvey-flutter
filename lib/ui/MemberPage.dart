@@ -24,7 +24,7 @@ class _MemberPageState extends State<MemberPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     app.currentHome = home;
     return Scaffold(
         appBar: AppBar(

@@ -16,7 +16,7 @@ class _WaitingPageState extends State<WaitingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     final repo = app.storage;
     final waiting = repo.getWaiting().toList();
     return Scaffold(

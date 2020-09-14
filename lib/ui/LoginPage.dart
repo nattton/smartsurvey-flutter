@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             );
           });
     } else if (user.status == 1) {
-      final app = Provider.of<SurveyApp>(context);
+      final app = Provider.of<SurveyApp>(context, listen: false);
       final repo = app.storage;
       await repo.saveUser(user);
       await repo.saveString("username", _usernameController.text);

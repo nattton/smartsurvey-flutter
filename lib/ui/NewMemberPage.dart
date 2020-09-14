@@ -314,7 +314,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
 
     home.hmember.add(member);
 
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     final repo = app.storage;
     await repo.addToWaiting(home);
     Navigator.of(context).pop();
