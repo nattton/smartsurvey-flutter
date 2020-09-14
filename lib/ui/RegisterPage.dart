@@ -477,6 +477,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.of(context, rootNavigator: true).pop();
                           },
                           child: Text("Save")),
+                      SizedBox(
+                        width: 10.0,
+                      ),
                       MaterialButton(
                           color: Colors.grey,
                           onPressed: () {
