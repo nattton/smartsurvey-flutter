@@ -19,10 +19,10 @@ class _Survey3State extends State<Survey3> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
     int count = home.countMemberAgeRange(0, 12);
-    if (count > 0) home.answer["1311"] = "1,$count";
+    home.answer["1311"] = (count > 0) ? "1,$count" : "0";
 
     return SurveyBody.build(
       context: context,
@@ -277,37 +277,37 @@ class _Survey3State extends State<Survey3> {
                   });
                 },
               ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  PillShapedButton(
-                    title: "ย้อนกลับ",
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () async {
-                      final repo = app.storage;
-                      await repo.addToWaiting(home);
-                      Navigator.of(context)
-                          .popAndPushNamed("/survey", arguments: 2);
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  PillShapedButton(
-                    title: "ถัดไป",
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () async {
-                      final repo = app.storage;
-                      await repo.addToWaiting(home);
-                      Navigator.of(context)
-                          .popAndPushNamed("/survey", arguments: 4);
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
             ]),
           ),
+          SizedBox(height: 20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              PillShapedButton(
+                title: "ย้อนกลับ",
+                color: Theme.of(context).primaryColor,
+                onPressed: () async {
+                  final repo = app.storage;
+                  await repo.addToWaiting(home);
+                  Navigator.of(context)
+                      .popAndPushNamed("/survey", arguments: 2);
+                },
+              ),
+              SizedBox(width: 20.0),
+              PillShapedButton(
+                title: "ถัดไป",
+                color: Theme.of(context).primaryColor,
+                onPressed: () async {
+                  final repo = app.storage;
+                  await repo.addToWaiting(home);
+                  Navigator.of(context)
+                      .popAndPushNamed("/survey", arguments: 4);
+                },
+              ),
+            ],
+          ),
+          SizedBox(height: 20.0),
         ],
       ),
     );

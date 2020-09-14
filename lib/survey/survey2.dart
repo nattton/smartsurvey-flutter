@@ -18,7 +18,7 @@ class _Survey2State extends State<Survey2> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
     int count = home.countMemberAgeLessThan1Year();
     home.answer["1211"] = count > 0 ? "1,$count" : "0";

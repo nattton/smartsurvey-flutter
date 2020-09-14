@@ -16,7 +16,7 @@ class _CommunityPageState extends State<CommunityPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(

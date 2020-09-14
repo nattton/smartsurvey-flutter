@@ -20,7 +20,7 @@ class _Survey6State extends State<Survey6> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
     int count = home.countMemberAgeRange(35, 150);
     home.answer["1631"] = (count > 0) ? "1,$count" : "0";

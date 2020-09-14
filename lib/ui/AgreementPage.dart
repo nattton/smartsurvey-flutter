@@ -24,7 +24,7 @@ class _AgreementPageState extends State<AgreementPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
 
     if (home.photoSignature != null) {

@@ -104,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           title: Text('ลงทะเบียนผู้บันทึก'),
@@ -644,7 +644,7 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     final saveUserResponse = await AppService.saveUserInfo(
       app.user,
       _prefix.code,

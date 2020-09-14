@@ -17,7 +17,7 @@ class _Survey5State extends State<Survey5> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
+    final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
 
     return SurveyBody.build(
