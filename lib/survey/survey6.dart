@@ -263,7 +263,7 @@ class _Survey6State extends State<Survey6> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 6);
+                      .popAndPushNamed("/survey", arguments: 7);
                 },
               ),
             ],
