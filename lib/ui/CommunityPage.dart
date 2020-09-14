@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/data/AppService.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
-import 'package:smartsurveys/models/Home.dart';
-import 'package:smartsurveys/models/Member.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 

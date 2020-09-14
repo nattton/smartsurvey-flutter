@@ -5,9 +5,6 @@ import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledCheckBoxInputNumber.dart';
-import 'package:smartsurveys/widgets/LabeledCheckBoxInputText.dart';
-import 'package:smartsurveys/widgets/LabeledRadio.dart';
-import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/SurveyBody.dart';
 

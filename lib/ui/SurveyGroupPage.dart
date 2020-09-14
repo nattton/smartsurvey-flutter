@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
+import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
 class SurveyGroupPage extends StatefulWidget {
   @override
@@ -48,6 +49,24 @@ class _SurveyGroupPageState extends State<SurveyGroupPage> {
                       child: CircularProgressIndicator(),
                     );
             },
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: MyFont.colorBottomBar,
+        child: Container(
+          decoration: BoxDecoration(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              PillShapedButton(
+                title: 'ส่งคำตอบ',
+                color: Colors.orange,
+                onPressed: () => {
+                  Navigator.of(context).pushNamed("/satisfaction"),
+                },
+              ),
+            ],
           ),
         ),
       ),

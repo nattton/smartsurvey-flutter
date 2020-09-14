@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
 import 'package:smartsurveys/models/Home.dart';
-import 'package:smartsurveys/models/SurveyMetric.dart';
+import 'package:smartsurveys/ui/AgreementPage.dart';
 import 'package:smartsurveys/ui/AreaCareerPage.dart';
 import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
@@ -18,6 +18,7 @@ import 'package:smartsurveys/ui/MemberPage.dart';
 import 'package:smartsurveys/ui/NewHomePage.dart';
 import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
+import 'package:smartsurveys/ui/SatisfactionPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
@@ -250,6 +251,25 @@ class MyApp extends StatelessWidget {
           ],
           child: SurveyPage(metricID: metricID),
         );
+      case '/satisfaction':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SatisfactionPage(),
+        );
+      case '/agreement':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: AgreementPage(),
+        );
+
       default:
         return Container();
     }

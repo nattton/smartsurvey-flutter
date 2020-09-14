@@ -25,9 +25,7 @@ class _MemberPageState extends State<MemberPage> {
   @override
   Widget build(BuildContext context) {
     final app = Provider.of<SurveyApp>(context);
-    final repo = app.storage;
     app.currentHome = home;
-
     return Scaffold(
         appBar: AppBar(
           title: Text('ข้อมูลสมาชิก'),

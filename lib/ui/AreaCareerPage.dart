@@ -19,7 +19,6 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
 
   String _arealive;
 

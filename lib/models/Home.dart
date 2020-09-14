@@ -13,7 +13,7 @@ class Home {
   String harea;
   String hlive;
   String hjob;
-  int satisfaction;
+  int satisfaction = 0;
   String latitude;
   String longitude;
   String photoSignature;
