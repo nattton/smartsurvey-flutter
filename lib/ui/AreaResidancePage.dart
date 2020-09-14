@@ -170,7 +170,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly,
                             ])),
                     SizedBox(width: 8.0),
                     Flexible(child: Text("ตารางวา")),

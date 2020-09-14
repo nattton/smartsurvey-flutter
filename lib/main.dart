@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
 import 'package:smartsurveys/models/Home.dart';
+import 'package:smartsurveys/models/SurveyMetric.dart';
 import 'package:smartsurveys/ui/AreaCareerPage.dart';
 import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
@@ -239,13 +240,15 @@ class MyApp extends StatelessWidget {
           child: SurveyMetricPage(sg: sg),
         );
       case '/survey':
+        final metricID = arguments as int;
+
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: SurveyPage(),
+          child: SurveyPage(metricID: metricID),
         );
       default:
         return Container();

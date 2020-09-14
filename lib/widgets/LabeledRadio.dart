@@ -19,7 +19,7 @@ class LabeledRadio extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (value != groupValue) onChanged(value);
+        if (onChanged != null && value != groupValue) onChanged(value);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -29,7 +29,7 @@ class LabeledRadio extends StatelessWidget {
               groupValue: groupValue,
               value: value,
               onChanged: (newValue) {
-                onChanged(newValue);
+                if (onChanged != null) onChanged(newValue);
               },
             ),
             Text(label),

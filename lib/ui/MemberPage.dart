@@ -5,7 +5,6 @@ import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/Member.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
-import 'package:smartsurveys/ui/NewHomePage.dart';
 import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
@@ -27,6 +26,7 @@ class _MemberPageState extends State<MemberPage> {
   Widget build(BuildContext context) {
     final app = Provider.of<SurveyApp>(context);
     final repo = app.storage;
+    app.currentHome = home;
 
     return Scaffold(
         appBar: AppBar(
@@ -46,11 +46,11 @@ class _MemberPageState extends State<MemberPage> {
                 color: MyFont.colorBG,
                 borderRadius:
                     new BorderRadius.all(const Radius.circular(30.0))),
-            child: home.hmember != null
+            child: app.currentHome.hmember != null
                 ? new ListView.builder(
-                    itemCount: home.hmember.length,
+                    itemCount: app.currentHome.hmember.length,
                     itemBuilder: (context, i) {
-                      return _buildRow(i, home.hmember[i]);
+                      return _buildRow(i, app.currentHome.hmember[i]);
                     },
                   )
                 : Container(),
@@ -69,18 +69,14 @@ class _MemberPageState extends State<MemberPage> {
                   onPressed: () async {
                     // Navigator.of(context)
                     //     .pushNamed('/newmember', arguments: home);
-                    final result =
-                        await Navigator.of(context).push(CupertinoPageRoute(
-                      fullscreenDialog: true,
-                      builder: (context) => NewMemberPage(
-                        home: home,
-                      ),
-                    ));
-                    if (result != null) {
-                      setState(() {
-                        this.home = result;
-                      });
-                    }
+                    Navigator.of(context)
+                        .push(CupertinoPageRoute(
+                          fullscreenDialog: true,
+                          builder: (context) => NewMemberPage(
+                            home: app.currentHome,
+                          ),
+                        ))
+                        .then((value) => setState(() {}));
                   },
                 ),
                 SizedBox(width: 24.0),
@@ -89,7 +85,7 @@ class _MemberPageState extends State<MemberPage> {
                   color: Colors.red,
                   onPressed: () async {
                     Navigator.of(context)
-                        .pushNamed('/surveygroup', arguments: home);
+                        .pushNamed('/surveygroup', arguments: app.currentHome);
                   },
                 ),
               ],

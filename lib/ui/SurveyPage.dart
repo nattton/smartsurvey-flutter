@@ -1,60 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:smartsurveys/constants/MyFont.dart';
-import 'package:smartsurveys/models/SurveyMetric.dart';
 import 'package:smartsurveys/survey/Survey1.dart';
 import 'package:smartsurveys/survey/Survey2.dart';
 import 'package:smartsurveys/survey/Survey3.dart';
 import 'package:smartsurveys/survey/Survey4.dart';
 import 'package:smartsurveys/survey/Survey5.dart';
+import 'package:smartsurveys/survey/Survey6.dart';
+import 'package:smartsurveys/widgets/SurveyBody.dart';
 
 class SurveyPage extends StatefulWidget {
-  static String routeName = 'survey';
-
+  final int metricID;
+  SurveyPage({key, this.metricID}) : super(key: key);
   @override
-  _SurveyPageState createState() => _SurveyPageState();
+  _SurveyPageState createState() => _SurveyPageState(metricID: metricID);
 }
 
 class _SurveyPageState extends State<SurveyPage> {
+  final int metricID;
+  _SurveyPageState({this.metricID});
+
   @override
   Widget build(BuildContext context) {
-    final SurveyMetric sm = ModalRoute.of(context).settings.arguments;
-    var bodySurvey;
-    switch (sm.metricNo) {
-      case "1":
-        bodySurvey = Survey1();
-        break;
-      case "2":
-        bodySurvey = Survey2();
-        break;
-      case "3":
-        bodySurvey = Survey3();
-        break;
-      case "4":
-        bodySurvey = Survey4();
-        break;
-      case "5":
-        bodySurvey = Survey5();
-        break;
+    switch (metricID) {
+      case 1:
+        return Survey1();
+      case 2:
+        return Survey2();
+      case 3:
+        return Survey3();
+      case 4:
+        return Survey4();
+      case 5:
+        return Survey5();
+      case 6:
+        return Survey6();
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("แบบสอบถาม"),
-      ),
-      body: Container(
-          padding: EdgeInsets.all(12.0),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/bgimage.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
-              decoration: BoxDecoration(
-                  color: MyFont.colorBG,
-                  borderRadius:
-                      new BorderRadius.all(const Radius.circular(30.0))),
-              child: bodySurvey)),
-    );
+    return SurveyBody.build(
+        context: context, title: "แบบสอบถาม", child: Container());
   }
 }
