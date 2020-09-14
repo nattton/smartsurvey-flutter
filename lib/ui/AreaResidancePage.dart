@@ -19,8 +19,6 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
   String _arealive;
 
   LandRights _landRight;
@@ -170,7 +168,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly,
                             ])),
                     SizedBox(width: 8.0),
                     Flexible(child: Text("ตารางวา")),

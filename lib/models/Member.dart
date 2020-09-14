@@ -1,22 +1,24 @@
+import 'package:age/age.dart';
+
 class Member {
   int hostStatus = 0;
-  String prefix;
-  String prefixName;
-  String firstname;
-  String lastname;
-  String gender;
-  String idcard;
-  String birthdate;
-  String jobname;
-  String education;
-  String religion;
-  String relation;
-  String health;
-  String ability;
+  String prefix = "";
+  String prefixName = "";
+  String firstname = "";
+  String lastname = "";
+  String gender = "";
+  String idcard = "";
+  String birthdate = "";
+  String jobname = "";
+  String education = "";
+  String religion = "";
+  String relation = "";
+  String health = "";
+  String ability = "";
   String informant = "0";
-  String welfareCard;
-  String welfareUsage;
-  String welfareCash;
+  String welfareCard = "";
+  String welfareUsage = "";
+  String welfareCash = "";
 
   Member({
     this.hostStatus = 0,
@@ -83,5 +85,18 @@ class Member {
       "welfareUsage": welfareUsage,
       "welfareCash": welfareCash,
     };
+  }
+
+  DateTime birthday() {
+    if (birthdate == "") return DateTime.now();
+    var b = birthdate.split("/");
+    var year = int.parse(b[2]) - 543;
+    var month = int.parse(b[1]);
+    var day = int.parse(b[0]);
+    return DateTime(year, month, day);
+  }
+
+  AgeDuration age() {
+    return Age.dateDifference(fromDate: birthday(), toDate: DateTime.now());
   }
 }

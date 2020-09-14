@@ -6,10 +6,15 @@ import 'package:smartsurveys/models/User.dart';
 class SurveyApp with ChangeNotifier {
   SurveyApp(this._home, this._storage);
 
-  final Home _home;
+  Home _home;
   final Storage _storage;
 
-  Home get store => _home;
+  Home get currentHome => _home;
+
+  set currentHome(Home h) {
+    _home = h;
+    notifyListeners();
+  }
 
   Storage get storage => _storage;
 

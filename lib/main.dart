@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
 import 'package:smartsurveys/models/Home.dart';
+import 'package:smartsurveys/ui/AgreementPage.dart';
 import 'package:smartsurveys/ui/AreaCareerPage.dart';
 import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
@@ -17,10 +18,12 @@ import 'package:smartsurveys/ui/MemberPage.dart';
 import 'package:smartsurveys/ui/NewHomePage.dart';
 import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
+import 'package:smartsurveys/ui/SatisfactionPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
 import 'package:smartsurveys/ui/WaitingPage.dart';
+import 'package:smartsurveys/widgets/SurveyBody.dart';
 
 void main() {
   runApp(MyConstants(
@@ -239,16 +242,37 @@ class MyApp extends StatelessWidget {
           child: SurveyMetricPage(sg: sg),
         );
       case '/survey':
+        final metricID = arguments as int;
+
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: SurveyPage(),
+          child: SurveyPage(metricID: metricID),
         );
+      case '/satisfaction':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SatisfactionPage(),
+        );
+      case '/agreement':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: AgreementPage(),
+        );
+
       default:
-        return Container();
+        return SurveyBody.build(title: "Page Not Found", child: Container());
     }
   }
 }

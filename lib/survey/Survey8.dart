@@ -7,12 +7,12 @@ import 'package:smartsurveys/widgets/LabeledRadioTrueFalse.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/SurveyBody.dart';
 
-class Survey5 extends StatefulWidget {
+class Survey8 extends StatefulWidget {
   @override
-  _Survey5State createState() => _Survey5State();
+  _Survey8State createState() => _Survey8State();
 }
 
-class _Survey5State extends State<Survey5> {
+class _Survey8State extends State<Survey8> {
   Home home;
 
   @override
@@ -27,70 +27,38 @@ class _Survey5State extends State<Survey5> {
         children: <Widget>[
           ListTile(
             title: Text(
-                '5. ครัวเรือนมีการใช้ยาเพื่อบำบัด บรรเทาอาการเจ็บป่วยเบื้องต้นอย่างเหมาะสม',
+                '8. ครัวเรือนมีความมั่นคงในที่อยู่อาศัยและบ้านมีสภาพคงทนถาวร',
                 style: MyFont.h1Font),
           ),
           ListTile(
             title: Text(
-              '5.1 ใช้ยาสามัญประจำบ้าน',
+              '8.1 ครัวเรือนมีความมั่นคงในที่อยู่อาศัย หรือไม่',
               style: MyFont.h2Font,
             ),
           ),
           LabeledRadioTrueFalse(
             labelTrue: 'ใช่',
             labelFalse: 'ไม่ใช่',
-            groupValue: home.answer["1511"],
+            groupValue: home.answer["2811"],
             onChanged: (String value) {
               setState(() {
-                home.answer["1511"] = value;
+                home.answer["2811"] = value;
               });
             },
           ),
           ListTile(
             title: Text(
-              '5.2 ไม่กินยาชุดที่ซื้อจากร้านขายของชำ',
+              '8.2 ครัวเรือนมีบ้านที่มีสภาพคงทนถาวร หรือไม่',
               style: MyFont.h2Font,
             ),
           ),
           LabeledRadioTrueFalse(
             labelTrue: 'ใช่',
             labelFalse: 'ไม่ใช่',
-            groupValue: home.answer["1521"],
+            groupValue: home.answer["2821"],
             onChanged: (String value) {
               setState(() {
-                home.answer["1521"] = value;
-              });
-            },
-          ),
-          ListTile(
-            title: Text(
-              '5.3 ไม่กินยาสมุนไพรหรือยาแผนโบราณที่ไม่ได้ปรับปรุงขึ้นเฉพาะสำหรับตน (ยกเว้นยาสามัญประจำบ้านแผนโบราณ)',
-              style: MyFont.h2Font,
-            ),
-          ),
-          LabeledRadioTrueFalse(
-            labelTrue: 'ใช่',
-            labelFalse: 'ไม่ใช่',
-            groupValue: home.answer["1531"],
-            onChanged: (String value) {
-              setState(() {
-                home.answer["1531"] = value;
-              });
-            },
-          ),
-          ListTile(
-            title: Text(
-              '5.4 ไม่กินผลิตภัณฑ์เสริมอาหารที่อวดอ้างสรรพคุณเกินจริง โดยแสดงสรรพคุณเป็นยาเพื่อบำบัด บรรเทา รักษาโรค ซึ่งไม่ตรงกับที่แสดงในฉลาก',
-              style: MyFont.h2Font,
-            ),
-          ),
-          LabeledRadioTrueFalse(
-            labelTrue: 'ใช่',
-            labelFalse: 'ไม่ใช่',
-            groupValue: home.answer["1541"],
-            onChanged: (String value) {
-              setState(() {
-                home.answer["1541"] = value;
+                home.answer["2821"] = value;
               });
             },
           ),
@@ -106,7 +74,7 @@ class _Survey5State extends State<Survey5> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 4);
+                      .popAndPushNamed("/survey", arguments: 7);
                 },
               ),
               SizedBox(width: 20.0),
@@ -117,7 +85,7 @@ class _Survey5State extends State<Survey5> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 6);
+                      .popAndPushNamed("/survey", arguments: 9);
                 },
               ),
             ],

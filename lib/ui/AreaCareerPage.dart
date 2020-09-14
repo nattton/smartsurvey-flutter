@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/LandRights.dart';
-import 'package:smartsurveys/models/SurveyApp.dart';
 
 class AreaCareerPage extends StatefulWidget {
   final Home home;
@@ -21,7 +19,6 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
 
   QueryCtr _query = QueryCtr();
   List<LandRights> _landRights = [];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
 
   String _arealive;
 
@@ -423,7 +420,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                             ),
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly,
                             ])),
                     SizedBox(width: 8.0),
                     Flexible(child: Text("ตารางวา")),
@@ -493,9 +490,6 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
   }
 
   void _saveFamily(BuildContext context) {
-    // await Navigator.popUntil(context, ModalRoute.withName('/home'));
-    // await Navigator.pushNamed(context, '/home');
-    // await Navigator.of(context).pushNamed("/member", arguments: home);
     Navigator.pushReplacementNamed(context, '/home');
     Navigator.of(context).pushNamed("/member", arguments: home);
   }

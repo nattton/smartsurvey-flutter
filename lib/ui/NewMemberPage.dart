@@ -54,7 +54,6 @@ class _NewMemberPageState extends State<NewMemberPage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('เพิ่มสมาชิก'),

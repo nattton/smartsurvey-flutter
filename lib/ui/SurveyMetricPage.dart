@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/SurveyMetric.dart';
 import 'package:smartsurveys/models/SurveyGroup.dart';
 
 class SurveyMetricPage extends StatefulWidget {
+  final Home home;
   final SurveyGroup sg;
-  const SurveyMetricPage({Key key, this.sg}) : super(key: key);
+  const SurveyMetricPage({Key key, this.home, this.sg}) : super(key: key);
 
   @override
-  _SurveyMetricPageState createState() => _SurveyMetricPageState(sg: sg);
+  _SurveyMetricPageState createState() =>
+      _SurveyMetricPageState(home: home, sg: sg);
 }
 
 class _SurveyMetricPageState extends State<SurveyMetricPage> {
+  final Home home;
   final SurveyGroup sg;
-  _SurveyMetricPageState({this.sg});
+  _SurveyMetricPageState({this.home, this.sg});
 
   final _biggerFont = const TextStyle(fontSize: 18.0);
   QueryCtr _query = QueryCtr();
@@ -63,7 +67,7 @@ class _SurveyMetricPageState extends State<SurveyMetricPage> {
           contentPadding: EdgeInsets.all(8.0),
         ),
         onTap: () {
-          Navigator.of(context).pushNamed("/survey", arguments: sm);
+          Navigator.of(context).pushNamed("/survey", arguments: sm.id);
         });
   }
 }

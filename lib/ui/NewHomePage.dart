@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/database/QueryCtr.dart';
 import 'package:smartsurveys/models/Amphur.dart';
@@ -10,7 +7,6 @@ import 'package:smartsurveys/models/Community.dart';
 import 'package:smartsurveys/models/CommunityAPI.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/Province.dart';
-import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/models/Tumbon.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
@@ -109,7 +105,6 @@ class _NewHomePageState extends State<NewHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final app = Provider.of<SurveyApp>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('ที่อยู่ของครัวเรือน'),
