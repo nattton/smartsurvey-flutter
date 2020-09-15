@@ -7,6 +7,7 @@ import 'package:smartsurveys/survey/Survey13.dart';
 import 'package:smartsurveys/survey/Survey14.dart';
 import 'package:smartsurveys/survey/Survey15.dart';
 import 'package:smartsurveys/survey/Survey16.dart';
+import 'package:smartsurveys/survey/Survey17.dart';
 import 'package:smartsurveys/survey/Survey2.dart';
 import 'package:smartsurveys/survey/Survey3.dart';
 import 'package:smartsurveys/survey/Survey4.dart';
@@ -63,6 +64,8 @@ class _SurveyPageState extends State<SurveyPage> {
         return Survey15();
       case 16:
         return Survey16();
+      case 17:
+        return Survey17();
     }
 
     return SurveyBody.build(

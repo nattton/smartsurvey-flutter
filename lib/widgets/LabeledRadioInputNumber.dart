@@ -25,16 +25,14 @@ class LabeledRadioInputNumber extends StatefulWidget {
 
   @override
   _LabeledRadioInputNumberState createState() =>
-      _LabeledRadioInputNumberState(label: label);
+      _LabeledRadioInputNumberState(label: label, value: value);
 }
 
 class _LabeledRadioInputNumberState extends State<LabeledRadioInputNumber> {
   String label;
   dynamic value;
 
-  _LabeledRadioInputNumberState({
-    this.label,
-  });
+  _LabeledRadioInputNumberState({this.label, this.value});
 
   final TextEditingController _valueController = new TextEditingController();
 
