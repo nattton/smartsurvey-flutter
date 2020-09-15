@@ -26,8 +26,8 @@ class _Survey15State extends State<Survey15> {
   Widget build(BuildContext context) {
     final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
-    int count = home.countMemberAgeLessThan1Year();
-    home.answer["31511"] = count > 0 ? "1,$count" : "0";
+    int count3to5 = home.countMemberAgeRange(3, 5);
+    home.answer["31511"] = count3to5 > 0 ? "1,$count3to5" : "0";
     return SurveyBody.build(
       context: context,
       title: "แบบสอบถาม",
@@ -45,8 +45,8 @@ class _Survey15State extends State<Survey15> {
             ),
           ),
           LabeledRadio(
-            label: 'มี $count คน',
-            value: "1,$count",
+            label: 'มี $count3to5 คน',
+            value: "1,$count3to5",
             groupValue: home.answer["31511"],
             onChanged: (String value) {},
           ),
@@ -112,7 +112,7 @@ class _Survey15State extends State<Survey15> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 15);
+                      .popAndPushNamed("/survey", arguments: 16);
                 },
               ),
             ],

@@ -129,7 +129,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                     onTap: () {
                       DatePicker.showDatePicker(context,
                           showTitleActions: true,
-                          minTime: DateTime(2000, 5, 5, 20, 50),
+                          minTime: DateTime(DateTime.now().year - 120, 1, 1),
                           maxTime: DateTime.now(), onChanged: (date) {
                         print('change $date in time zone ' +
                             date.timeZoneOffset.inHours.toString());
