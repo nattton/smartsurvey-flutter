@@ -20,7 +20,7 @@ class _SummaryPageState extends State<SummaryPage> {
     home = app.currentHome;
 
     return SurveyBody.build(
-        title: "สรุปคูณภาพชีวิตของครัวเรือน",
+        title: "สรุปคุณภาพชีวิตของครัวเรือน",
         child: Container(
           margin: EdgeInsets.all(20.0),
           child: ListView(
