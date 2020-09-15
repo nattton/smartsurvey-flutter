@@ -30,7 +30,9 @@ class _Survey17State extends State<Survey17> {
     int count14to17 = home.countMemberAgeRange(14, 17);
     int count15to18 = home.countMemberAgeRange(15, 18);
     int count15to25 = home.countMemberAgeRange(15, 25);
-    home.answer["31711"] = count14to17 > 0 ? "1,$count14to17" : "0";
+    if (count14to17 == 0) {
+      home.answer["31711"] = "0";
+    }
     return SurveyBody.build(
       context: context,
       title: "แบบสอบถาม",
@@ -46,20 +48,32 @@ class _Survey17State extends State<Survey17> {
               style: MyFont.h2Font,
             ),
           ),
-          LabeledRadio(
-            label: 'มี $count14to17 คน',
-            value: "1,$count14to17",
+          LabeledRadioInputNumber(
+            label: 'มี ... คน',
+            value: "1",
+            question: "จำนวน",
+            unit: "คน",
             groupValue: home.answer["31711"],
-            onChanged: (String value) {},
+            onChanged: (String value) {
+              if (count14to17 > 0) {
+                setState(() {
+                  home.answer["31711"] = value;
+                });
+              }
+            },
           ),
           LabeledRadio(
             label: 'ไม่มี (ข้ามไปข้อ 17.5)',
             value: "0",
             groupValue: home.answer["31711"],
-            onChanged: (String value) {},
+            onChanged: (String value) {
+              setState(() {
+                home.answer["31711"] = value;
+              });
+            },
           ),
           Visibility(
-              visible: home.answer["31611"] != "0",
+              visible: home.answer["31711"] != "0",
               child: Column(
                 children: [
                   ListTile(
