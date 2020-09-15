@@ -19,6 +19,7 @@ import 'package:smartsurveys/ui/NewHomePage.dart';
 import 'package:smartsurveys/ui/NewMemberPage.dart';
 import 'package:smartsurveys/ui/RegisterPage.dart';
 import 'package:smartsurveys/ui/SatisfactionPage.dart';
+import 'package:smartsurveys/ui/SummaryPage.dart';
 import 'package:smartsurveys/ui/SurveyGroupPage.dart';
 import 'package:smartsurveys/ui/SurveyMetricPage.dart';
 import 'package:smartsurveys/ui/SurveyPage.dart';
@@ -269,6 +270,15 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: AgreementPage(),
+        );
+      case '/summary':
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: SummaryPage(),
         );
 
       default:
