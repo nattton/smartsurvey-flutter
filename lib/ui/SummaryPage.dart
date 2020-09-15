@@ -309,10 +309,7 @@ class _SummaryPageState extends State<SummaryPage> {
   }
 
   TableRow _rowSpace() {
-    return TableRow(children: [
-      SizedBox(height: 15), //SizeBox Widget
-      SizedBox(height: 15)
-    ]);
+    return TableRow(children: [SizedBox(height: 15), SizedBox(height: 15)]);
   }
 
   Widget _noAnwser() {
