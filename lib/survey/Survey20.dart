@@ -6,7 +6,6 @@ import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledCheckBoxInputNumber.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
-import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/SurveyBody.dart';
 
@@ -28,7 +27,7 @@ class _Survey20State extends State<Survey20> {
   Widget build(BuildContext context) {
     final app = Provider.of<SurveyApp>(context, listen: false);
     home = app.currentHome;
-    // int count15to59Ablity = home.countMemberAge15to59WorkAbility();
+    // int count15to59Ablity = home.countMemberAge15to59Ability();
     int count15to59Ablity = home.countMemberAgeRange(15, 59);
     home.answer["42011"] = count15to59Ablity > 0 ? "1,$count15to59Ablity" : "0";
     return SurveyBody.build(

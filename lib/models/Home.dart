@@ -334,7 +334,7 @@ class Home {
 
   int countMemberAgeRange(int from, int to) => memberAgeRange(from, to).length;
 
-  int countMemberAge15to59WorkAbility() => memberAgeRange(15, 59)
+  int countMemberAge15to59Ability() => memberAgeRange(15, 59)
       .where((m) =>
           (m.jobname != "0110" && m.jobname != "0210") &&
           ((m.ability == "1") ||
