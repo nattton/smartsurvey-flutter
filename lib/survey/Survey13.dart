@@ -134,46 +134,51 @@ class _Survey13State extends State<Survey13> {
                 ),
                 LabeledCheckBox(
                   label: 'อุทกภัย',
-                  value: home.answer["213221"] == "1",
-                  onChanged: (bool newValue) {
+                  value: "1",
+                  groupValue: home.answer["213221"],
+                  onChanged: (String newValue) {
                     setState(() {
-                      home.answer["213221"] = newValue ? "1" : "0";
+                      home.answer["213221"] = newValue;
                     });
                   },
                 ),
                 LabeledCheckBox(
                   label: 'วาตภัย',
-                  value: home.answer["213222"] == "1",
-                  onChanged: (bool newValue) {
+                  value: "1",
+                  groupValue: home.answer["213222"],
+                  onChanged: (String newValue) {
                     setState(() {
-                      home.answer["213222"] = newValue ? "1" : "0";
+                      home.answer["213222"] = newValue;
                     });
                   },
                 ),
                 LabeledCheckBox(
                   label: 'อัคคีภัย',
-                  value: home.answer["213223"] == "1",
-                  onChanged: (bool newValue) {
+                  value: "1",
+                  groupValue: home.answer["213223"],
+                  onChanged: (String newValue) {
                     setState(() {
-                      home.answer["213223"] = newValue ? "1" : "0";
+                      home.answer["213223"] = newValue;
                     });
                   },
                 ),
                 LabeledCheckBox(
                   label: 'ดินโคลนถล่ม',
-                  value: home.answer["213224"] == "1",
-                  onChanged: (bool newValue) {
+                  value: "1",
+                  groupValue: home.answer["213224"],
+                  onChanged: (String newValue) {
                     setState(() {
-                      home.answer["213224"] = newValue ? "1" : "0";
+                      home.answer["213224"] = newValue;
                     });
                   },
                 ),
                 LabeledCheckBox(
                   label: 'แผ่นดินไหว',
-                  value: home.answer["213225"] == "1",
-                  onChanged: (bool newValue) {
+                  value: "1",
+                  groupValue: home.answer["213225"],
+                  onChanged: (String newValue) {
                     setState(() {
-                      home.answer["213225"] = newValue ? "1" : "0";
+                      home.answer["213225"] = newValue;
                     });
                   },
                 ),

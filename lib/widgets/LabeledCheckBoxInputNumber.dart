@@ -31,7 +31,7 @@ class LabeledCheckBoxInputNumber extends StatefulWidget {
 class _LabeledCheckBoxInputNumberState
     extends State<LabeledCheckBoxInputNumber> {
   String label;
-  bool value = false;
+  String value;
 
   _LabeledCheckBoxInputNumberState({this.label});
 
@@ -42,7 +42,7 @@ class _LabeledCheckBoxInputNumberState
     if (widget.groupValue != null) {
       List<String> ans = widget.groupValue.toString().split(",");
       if (ans[0] == "1") {
-        value = true;
+        value = widget.groupValue;
         _valueController.text = ans[1];
         label = widget.label.replaceAll("...", ans[1]);
       }
@@ -56,7 +56,7 @@ class _LabeledCheckBoxInputNumberState
         child: Row(
           children: <Widget>[
             Checkbox(
-              value: value,
+              value: value == widget.groupValue,
               onChanged: (newValue) {
                 _showDialog(context);
               },
@@ -104,9 +104,6 @@ class _LabeledCheckBoxInputNumberState
                 children: [
                   FlatButton(
                       onPressed: () {
-                        setState(() {
-                          value = false;
-                        });
                         widget.onChanged("");
                         Navigator.of(context).pop();
                       },
@@ -117,13 +114,12 @@ class _LabeledCheckBoxInputNumberState
                         if (_valueController.text == "") return;
 
                         setState(() {
+                          value = "1," + _valueController.text;
                           label = widget.label
                               .replaceAll("...", _valueController.text);
-
-                          value = true;
                         });
 
-                        widget.onChanged("1," + _valueController.text);
+                        widget.onChanged(value);
                         Navigator.of(context).pop();
                       })
                 ],

@@ -41,10 +41,11 @@ class _Survey7State extends State<Survey7> {
           ),
           LabeledCheckBox(
             label: 'ได้ออกกำลังกาย หรือได้ออกแรง/ ออกกำลังทุกคน',
-            value: home.answer["1711"] == "1",
-            onChanged: (bool newValue) {
+            value: "1",
+            groupValue: home.answer["1711"],
+            onChanged: (String newValue) {
               setState(() {
-                home.answer["1711"] = newValue ? "1" : "0";
+                home.answer["1711"] = newValue;
               });
             },
           ),

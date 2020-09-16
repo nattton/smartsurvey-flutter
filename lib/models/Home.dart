@@ -334,13 +334,12 @@ class Home {
 
   int countMemberAgeRange(int from, int to) => memberAgeRange(from, to).length;
 
-  int countMemberAge15to59WorkAbility(int from, int to) =>
-      memberAgeRange(15, 59)
-          .where((m) =>
-              (m.jobname != "0110" && m.jobname != "0210") &&
-              ((m.ability == "1") ||
-                  (m.ability == "0" && (m.health == "0" || m.health == "2"))))
-          .length;
+  int countMemberAge15to59WorkAbility() => memberAgeRange(15, 59)
+      .where((m) =>
+          (m.jobname != "0110" && m.jobname != "0210") &&
+          ((m.ability == "1") ||
+              (m.ability == "0" && (m.health == "0" || m.health == "2"))))
+      .length;
 
   int countMemberAge60Ability() => memberAgeRange(60, 200)
       .where((m) => ((m.ability == "1") ||
