@@ -59,7 +59,12 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
                 _showDialog(context);
               },
             ),
-            Text(label),
+            Expanded(
+              child: Text(label,
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 10),
+            ),
           ],
         ),
       ),

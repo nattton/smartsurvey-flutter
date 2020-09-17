@@ -35,7 +35,12 @@ class LabeledCheckBox extends StatelessWidget {
                 }
               },
             ),
-            Text(label),
+            Expanded(
+              child: Text(label,
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 10),
+            ),
           ],
         ),
       ),
