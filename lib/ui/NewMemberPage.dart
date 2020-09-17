@@ -11,6 +11,7 @@ import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/Member.dart';
 import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
+import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
 class NewMemberPage extends StatefulWidget {
@@ -36,6 +37,8 @@ class _NewMemberPageState extends State<NewMemberPage> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _idCardController = TextEditingController();
   final TextEditingController _birthDateController = TextEditingController();
+
+  String _health = "";
 
   @override
   void initState() {
@@ -158,6 +161,43 @@ class _NewMemberPageState extends State<NewMemberPage> {
                     ]),
                 SizedBox(height: 24.0),
                 _decorateDropdown(_dropdownGender()),
+                SizedBox(height: 24.0),
+                ListTile(
+                  title: Text(
+                    'สถานะภาพทางร่างการ',
+                    style: MyFont.h2Font,
+                  ),
+                ),
+                LabeledRadio(
+                  label: 'ปกติ',
+                  value: "0",
+                  groupValue: _health,
+                  onChanged: (String value) {
+                    setState(() {
+                      _health = value;
+                    });
+                  },
+                ),
+                LabeledRadio(
+                  label: 'พิการ',
+                  value: "1",
+                  groupValue: _health,
+                  onChanged: (String value) {
+                    setState(() {
+                      _health = value;
+                    });
+                  },
+                ),
+                LabeledRadio(
+                  label: 'ผู้ป่วยเรื้อรัง',
+                  value: "2",
+                  groupValue: _health,
+                  onChanged: (String value) {
+                    setState(() {
+                      _health = value;
+                    });
+                  },
+                ),
                 SizedBox(height: 24.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -311,6 +351,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
     member.birthdate = _birthDateController.text;
     member.gender = _gender.code;
     member.idcard = _idCardController.text;
+    member.health = _health;
 
     home.hmember.add(member);
 
