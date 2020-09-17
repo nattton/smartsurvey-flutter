@@ -28,7 +28,7 @@ class LabeledCheckBox extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Checkbox(
-              value: value == groupValue,
+              value: value != null && value == groupValue,
               onChanged: (newValue) {
                 if (onChanged != null) {
                   newValue ? onChanged(value) : onChanged("");

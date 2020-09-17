@@ -43,7 +43,7 @@ class _Survey32State extends State<Survey32> {
             label: 'มี ... คน',
             value: "1",
             groupValue: home.answer["63211"],
-            question: "63211",
+            question: "จำนวน",
             unit: "คน",
             onChanged: (String value) {
               setState(() {
@@ -141,7 +141,7 @@ class _Survey32State extends State<Survey32> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 32);
+                      .popAndPushNamed("/survey", arguments: 33);
                 },
               ),
             ],

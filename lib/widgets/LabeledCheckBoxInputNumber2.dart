@@ -63,7 +63,7 @@ class _LabeledCheckBoxInputNumber2State
         child: Row(
           children: <Widget>[
             Checkbox(
-              value: value == widget.groupValue,
+              value: value != null && value == widget.groupValue,
               onChanged: (newValue) {
                 _showDialog(context);
               },
