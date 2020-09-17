@@ -8,8 +8,6 @@ import 'package:smartsurveys/widgets/LabeledCheckBoxInputText.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/LabeledRadioInputText.dart';
-import 'package:smartsurveys/widgets/LabeledRadioList.dart';
-import 'package:smartsurveys/widgets/LabeledRadioTrueFalse.dart';
 import 'package:smartsurveys/widgets/LabeledTextNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/SurveyBody.dart';
