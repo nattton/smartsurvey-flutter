@@ -349,6 +349,8 @@ class Home {
 
   int countMemberDisabled() => hmember.where((m) => m.health == "1").length;
 
+  int countMemberSick() => hmember.where((m) => m.health == "2").length;
+
   bool hasInformant() => hmember.firstWhere((m) => m.informant == "1") != null;
 
   int countWelfareCard() => hmember.where((m) => m.welfareCard == "1").length;
