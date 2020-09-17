@@ -272,7 +272,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422311"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422311"] = value;
@@ -300,7 +300,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422312"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422312"] = value;
@@ -328,7 +328,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422313"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422313"] = value;
@@ -356,7 +356,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422314"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422314"] = value;
@@ -384,7 +384,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422315"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422315"] = value;
@@ -412,7 +412,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422316"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422316"] = value;
@@ -440,7 +440,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422317"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422317"] = value;
@@ -468,7 +468,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422318"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422318"] = value;
@@ -496,7 +496,7 @@ class _Survey22State extends State<Survey22> {
                   value: "1",
                   groupValue: home.answer["422319"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422319"] = value;
@@ -534,7 +534,7 @@ class _Survey22State extends State<Survey22> {
                   value: "0",
                   groupValue: home.answer["422319"],
                   question: "จำนวน",
-                  unit: "คน",
+                  unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
                       home.answer["422319"] = value;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class LabeledCheckBoxInputText extends StatefulWidget {
   LabeledCheckBoxInputText({
@@ -82,7 +81,7 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
                       controller: _valueController,
                       autofocus: false,
                       decoration: InputDecoration(
-                        labelText: 'จำนวน',
+                        labelText: '...',
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
