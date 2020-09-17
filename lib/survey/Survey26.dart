@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
-import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
@@ -83,7 +82,7 @@ class _Survey26State extends State<Survey26> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 26);
+                      .popAndPushNamed("/survey", arguments: 27);
                 },
               ),
             ],
