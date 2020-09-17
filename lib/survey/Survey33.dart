@@ -240,18 +240,19 @@ class _Survey33State extends State<Survey33> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 31);
+                      .popAndPushNamed("/survey", arguments: 32);
                 },
               ),
               SizedBox(width: 20.0),
               PillShapedButton(
-                title: "ถัดไป",
+                title: "ส่งคำตอบ",
                 color: Theme.of(context).primaryColor,
                 onPressed: () async {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
-                  Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 32);
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed("/satisfaction");
                 },
               ),
             ],
