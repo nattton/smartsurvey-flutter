@@ -46,6 +46,9 @@ class _Survey7State extends State<Survey7> {
             onChanged: (String newValue) {
               setState(() {
                 home.answer["1711"] = newValue;
+                if (newValue != "") {
+                  home.answer["1714"] = "";
+                }
               });
             },
           ),

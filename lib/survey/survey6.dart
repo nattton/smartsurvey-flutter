@@ -4,7 +4,7 @@ import 'package:smartsurveys/constants/MyFont.dart';
 import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
 import 'package:smartsurveys/widgets/LabeledCheckBoxInputNumber.dart';
-import 'package:smartsurveys/widgets/LabeledCheckBoxInputText.dart';
+import 'package:smartsurveys/widgets/LabeledCheckBoxInputTextNumber.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
@@ -84,11 +84,12 @@ class _Survey6State extends State<Survey6> {
               });
             },
           ),
-          LabeledCheckBoxInputText(
+          LabeledCheckBoxInputTextNumber(
             label: '5. อื่นๆ ...',
             groupValue: home.answer["1615"],
             question: "อื่นๆ ...",
-            unit: "... , ... คน",
+            unit: "... ",
+            unit2: "คน",
             onChanged: (String value) {
               setState(() {
                 home.answer["1615"] = value;
@@ -145,11 +146,12 @@ class _Survey6State extends State<Survey6> {
               });
             },
           ),
-          LabeledCheckBoxInputText(
+          LabeledCheckBoxInputTextNumber(
             label: '5. อื่นๆ ...',
             groupValue: home.answer["1625"],
             question: "อื่นๆ ...",
-            unit: "... , ... คน",
+            unit: "...",
+            unit2: "คน",
             onChanged: (String value) {
               setState(() {
                 home.answer["1625"] = value;
