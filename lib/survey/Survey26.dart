@@ -9,12 +9,12 @@ import 'package:smartsurveys/widgets/LabeledRadioInputNumber.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 import 'package:smartsurveys/widgets/SurveyBody.dart';
 
-class Survey25 extends StatefulWidget {
+class Survey26 extends StatefulWidget {
   @override
-  _Survey25State createState() => _Survey25State();
+  _Survey26State createState() => _Survey26State();
 }
 
-class _Survey25State extends State<Survey25> {
+class _Survey26State extends State<Survey26> {
   Home home;
 
   @override
@@ -29,50 +29,36 @@ class _Survey25State extends State<Survey25> {
         children: <Widget>[
           ListTile(
             title: Text(
-              '25. คนในครัวเรือนไม่สูบบุหรี่',
-              style: MyFont.h1Font,
-            ),
+                '26. คนอายุ 6 ปีขึ้นไป ปฏิบัติกิจกรรมทางศาสนาอย่างน้อยสัปดาห์ละ 1 ครั้ง',
+                style: MyFont.h1Font),
           ),
           ListTile(
             title: Text(
-              'ทุกคนในครัวเรือนนี้ สูบบุหรี่ หรือไม่ (ยาสูบ ยาเส้น หรือยามวน)',
+              'ในรอบปีที่ผ่านมา คนในครัวเรือนที่อายุตั้งแต่ 6 ปีขึ้นไปทุกคน ได้ปฏิบัติกิจกรรมทางศาสนาอย่างใดอย่างหนึ่ง  หรือหลายอย่าง อย่างน้อย สัปดาห์ละ 1 ครั้ง หรือไม่ (เช่น การร่วมพิธีกรรมทางศาสนา ทำบุญตักบาตร  ทำภาวนา/สมาธิ สวดมนต์ ฟังเทศน์ ฟังธรรม หรือการทำละหมาด และการเข้าโบสถ์คริสต์ เป็นต้น)',
               style: MyFont.h2Font,
             ),
           ),
           LabeledRadio(
-            label: 'ไม่สูบบุหรี่ทุกคน',
-            value: "0",
-            groupValue: home.answer["52511"],
+            label: 'ปฏิบัติทุกคน',
+            value: "1",
+            groupValue: home.answer["52611"],
             onChanged: (String value) {
               setState(() {
-                home.answer["52511"] = value;
+                home.answer["52611"] = value;
               });
             },
           ),
           LabeledRadioInputNumber(
-            label: "สูบบุหรี่ ... คน",
-            value: "1",
-            groupValue: home.answer["52511"],
+            label: "ไม่ปฏิบัติ ... คน",
+            value: "0",
+            groupValue: home.answer["52611"],
             question: "จำนวน",
             unit: "คน",
             onChanged: (String value) {
               setState(() {
-                home.answer["52511"] = value;
+                home.answer["52611"] = value;
               });
             },
-          ),
-          Visibility(
-            visible: home.answer["52511"] != "0",
-            child: LabeledCheckBox(
-              label: 'ผู้ที่สูบบุหรี่เป็นผู้ที่หารายได้หลักให้กับครัวเรือน',
-              value: "1",
-              groupValue: home.answer["52512"],
-              onChanged: (String newValue) {
-                setState(() {
-                  home.answer["52512"] = newValue;
-                });
-              },
-            ),
           ),
           SizedBox(height: 20.0),
           Row(
@@ -86,7 +72,7 @@ class _Survey25State extends State<Survey25> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 24);
+                      .popAndPushNamed("/survey", arguments: 25);
                 },
               ),
               SizedBox(width: 20.0),
