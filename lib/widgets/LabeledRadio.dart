@@ -32,7 +32,12 @@ class LabeledRadio extends StatelessWidget {
                 if (onChanged != null) onChanged(newValue);
               },
             ),
-            Text(label),
+            Expanded(
+              child: Text(label,
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 10),
+            ),
           ],
         ),
       ),

@@ -99,7 +99,9 @@ class _MemberPageState extends State<MemberPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ 0 ปี)",
+                "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ " +
+                    item.age().years.toString() +
+                    " ปี)",
                 style: _biggerFont),
             Text("     ${item.idcard}", style: _biggerFont)
           ],

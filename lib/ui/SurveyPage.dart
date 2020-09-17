@@ -3,8 +3,29 @@ import 'package:smartsurveys/survey/Survey1.dart';
 import 'package:smartsurveys/survey/Survey10.dart';
 import 'package:smartsurveys/survey/Survey11.dart';
 import 'package:smartsurveys/survey/Survey12.dart';
+import 'package:smartsurveys/survey/Survey13.dart';
+import 'package:smartsurveys/survey/Survey14.dart';
+import 'package:smartsurveys/survey/Survey15.dart';
+import 'package:smartsurveys/survey/Survey16.dart';
+import 'package:smartsurveys/survey/Survey17.dart';
+import 'package:smartsurveys/survey/Survey18.dart';
+import 'package:smartsurveys/survey/Survey19.dart';
 import 'package:smartsurveys/survey/Survey2.dart';
+import 'package:smartsurveys/survey/Survey20.dart';
+import 'package:smartsurveys/survey/Survey21.dart';
+import 'package:smartsurveys/survey/Survey22.dart';
+import 'package:smartsurveys/survey/Survey23.dart';
+import 'package:smartsurveys/survey/Survey24.dart';
+import 'package:smartsurveys/survey/Survey25.dart';
+import 'package:smartsurveys/survey/Survey26.dart';
+import 'package:smartsurveys/survey/Survey27.dart';
+import 'package:smartsurveys/survey/Survey28.dart';
+import 'package:smartsurveys/survey/Survey29.dart';
 import 'package:smartsurveys/survey/Survey3.dart';
+import 'package:smartsurveys/survey/Survey30.dart';
+import 'package:smartsurveys/survey/Survey31.dart';
+import 'package:smartsurveys/survey/Survey32.dart';
+import 'package:smartsurveys/survey/Survey33.dart';
 import 'package:smartsurveys/survey/Survey4.dart';
 import 'package:smartsurveys/survey/Survey5.dart';
 import 'package:smartsurveys/survey/Survey6.dart';
@@ -51,6 +72,48 @@ class _SurveyPageState extends State<SurveyPage> {
         return Survey11();
       case 12:
         return Survey12();
+      case 13:
+        return Survey13();
+      case 14:
+        return Survey14();
+      case 15:
+        return Survey15();
+      case 16:
+        return Survey16();
+      case 17:
+        return Survey17();
+      case 18:
+        return Survey18();
+      case 19:
+        return Survey19();
+      case 20:
+        return Survey20();
+      case 21:
+        return Survey21();
+      case 22:
+        return Survey22();
+      case 23:
+        return Survey23();
+      case 24:
+        return Survey24();
+      case 25:
+        return Survey25();
+      case 26:
+        return Survey26();
+      case 27:
+        return Survey27();
+      case 28:
+        return Survey28();
+      case 29:
+        return Survey29();
+      case 30:
+        return Survey30();
+      case 31:
+        return Survey31();
+      case 32:
+        return Survey32();
+      case 33:
+        return Survey33();
     }
 
     return SurveyBody.build(

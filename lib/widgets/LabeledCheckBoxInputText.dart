@@ -29,7 +29,7 @@ class LabeledCheckBoxInputText extends StatefulWidget {
 
 class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
   String label;
-  bool value = false;
+  String value;
 
   _LabeledCheckBoxInputTextState({this.label});
 
@@ -40,7 +40,7 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
     if (widget.groupValue != null) {
       List<String> ans = widget.groupValue.toString().split(",");
       if (ans[0] == "1") {
-        value = true;
+        value = widget.groupValue;
         _valueController.text = ans[1];
         label = widget.label.replaceAll("...", ans[1]);
       }
@@ -54,12 +54,17 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
         child: Row(
           children: <Widget>[
             Checkbox(
-              value: value,
+              value: value != null && value == widget.groupValue,
               onChanged: (newValue) {
                 _showDialog(context);
               },
             ),
-            Text(label),
+            Expanded(
+              child: Text(label,
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 10),
+            ),
           ],
         ),
       ),
@@ -99,9 +104,6 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
                 children: [
                   FlatButton(
                       onPressed: () {
-                        setState(() {
-                          value = false;
-                        });
                         widget.onChanged("");
                         Navigator.of(context).pop();
                       },
@@ -112,13 +114,12 @@ class _LabeledCheckBoxInputTextState extends State<LabeledCheckBoxInputText> {
                         if (_valueController.text == "") return;
 
                         setState(() {
+                          value = "1," + _valueController.text;
                           label = widget.label
                               .replaceAll("...", _valueController.text);
-
-                          value = true;
                         });
 
-                        widget.onChanged("1," + _valueController.text);
+                        widget.onChanged(value);
                         Navigator.of(context).pop();
                       })
                 ],
