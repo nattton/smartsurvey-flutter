@@ -31,7 +31,7 @@ class _Survey31State extends State<Survey31> {
           ),
           ListTile(
             title: Text(
-              "31. กรณีมีสมาชิก 2 คนขึ้นไป อยู่ในครัวเรือนเดียวกัน",
+              "31. สมาชิกอยู่ในครัวเรือนเดียวกัน",
               style: MyFont.h2Font,
             ),
           ),
@@ -171,7 +171,7 @@ class _Survey31State extends State<Survey31> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 13);
+                      .popAndPushNamed("/survey", arguments: 30);
                 },
               ),
               SizedBox(width: 20.0),
@@ -182,7 +182,7 @@ class _Survey31State extends State<Survey31> {
                   final repo = app.storage;
                   await repo.addToWaiting(home);
                   Navigator.of(context)
-                      .popAndPushNamed("/survey", arguments: 15);
+                      .popAndPushNamed("/survey", arguments: 32);
                 },
               ),
             ],
