@@ -96,33 +96,40 @@ class _Survey2State extends State<Survey2> {
             value: "0",
             groupValue: home.answer["1231"],
           ),
-          ListTile(
-            title: Text(
-              '2.4 เด็กอายุตั้งแต่ 6 เดือนถึง 1 ปี ได้กินนมแม่อย่างเดียว เป็นระยะเวลา 6 เดือนแรกติดต่อกัน ทุกคน หรือไม่',
-              style: MyFont.h2Font,
+          Visibility(
+            visible: home.answer["1231"] != "0",
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    '2.4 เด็กอายุตั้งแต่ 6 เดือนถึง 1 ปี ได้กินนมแม่อย่างเดียว เป็นระยะเวลา 6 เดือนแรกติดต่อกัน ทุกคน หรือไม่',
+                    style: MyFont.h2Font,
+                  ),
+                ),
+                LabeledRadio(
+                  label: 'ทุกคน',
+                  value: "1",
+                  groupValue: home.answer["1241"],
+                  onChanged: (String value) {
+                    setState(() {
+                      home.answer["1241"] = value;
+                    });
+                  },
+                ),
+                LabeledRadioInputNumber(
+                  label: 'ไม่ได้กิน ... คน',
+                  value: "0",
+                  groupValue: home.answer["1241"],
+                  question: "ไม่ได้กิน",
+                  unit: "คน",
+                  onChanged: (String value) {
+                    setState(() {
+                      home.answer["1241"] = value;
+                    });
+                  },
+                ),
+              ],
             ),
-          ),
-          LabeledRadio(
-            label: 'ทุกคน',
-            value: "1",
-            groupValue: home.answer["1241"],
-            onChanged: (String value) {
-              setState(() {
-                home.answer["1241"] = value;
-              });
-            },
-          ),
-          LabeledRadioInputNumber(
-            label: 'ไม่ได้กิน ... คน',
-            value: "0",
-            groupValue: home.answer["1241"],
-            question: "ไม่ได้กิน",
-            unit: "คน",
-            onChanged: (String value) {
-              setState(() {
-                home.answer["1241"] = value;
-              });
-            },
           ),
           SizedBox(height: 20.0),
           Row(

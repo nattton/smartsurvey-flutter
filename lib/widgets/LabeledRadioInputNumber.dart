@@ -42,8 +42,10 @@ class _LabeledRadioInputNumberState extends State<LabeledRadioInputNumber> {
       List<String> ans = widget.groupValue.toString().split(",");
       if (ans[0] == widget.value) {
         value = widget.groupValue;
-        _valueController.text = ans[1];
-        label = widget.label.replaceAll("...", ans[1]);
+        try {
+          _valueController.text = ans[1];
+          label = widget.label.replaceAll("...", ans[1]);
+        } on RangeError {}
       }
     }
     return InkWell(

@@ -30,9 +30,6 @@ class _Survey17State extends State<Survey17> {
     int count14to17 = home.countMemberAgeRange(14, 17);
     int count15to18 = home.countMemberAgeRange(15, 18);
     int count15to25 = home.countMemberAgeRange(15, 25);
-    if (count14to17 == 0) {
-      home.answer["31711"] = "0";
-    }
     return SurveyBody.build(
       context: context,
       title: "แบบสอบถาม",

@@ -35,7 +35,7 @@ class _AgreementPageState extends State<AgreementPage> {
         title: "ยินยอมให้ข้อมูล",
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: [
               Text(
                   "ข้าพเจ้ายินยอมให้กรมการพัฒนาชุมชนและหน่วยงานของรัฐสามารถนำข้อมูลไปใช้ประโยชน์ในการพัฒนาคุณภาพชีวิตและการบริหารราชการแผ่นดิน",
