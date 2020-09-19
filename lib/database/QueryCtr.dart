@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'package:smartsurveys/models/Amphur.dart';
+import 'package:smartsurveys/models/Career.dart';
 import 'package:smartsurveys/models/Community.dart';
 import 'package:smartsurveys/models/DistrictType.dart';
+import 'package:smartsurveys/models/Education.dart';
 import 'package:smartsurveys/models/Gender.dart';
 import 'package:smartsurveys/models/LandRights.dart';
 import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Province.dart';
+import 'package:smartsurveys/models/Relationship.dart';
+import 'package:smartsurveys/models/Religion.dart';
 import 'package:smartsurveys/models/SurveyMetric.dart';
 import 'package:smartsurveys/models/Tumbon.dart';
 import 'package:sqflite/sqflite.dart';
@@ -106,6 +110,43 @@ class QueryCtr {
     );
     final list = List<LandRights>.generate(maps.length, (i) {
       return LandRights.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<Career>> getAllCareers() async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps = await db.query(Career.tableName);
+    final list = List<Career>.generate(maps.length, (i) {
+      return Career.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<Education>> getAllEducations() async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps = await db.query(Education.tableName);
+    final list = List<Education>.generate(maps.length, (i) {
+      return Education.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<Religion>> getAllReligions() async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps = await db.query(Religion.tableName);
+    final list = List<Religion>.generate(maps.length, (i) {
+      return Religion.fromMap(maps[i]);
+    });
+    return list;
+  }
+
+  Future<List<Relationship>> getAllRelationships() async {
+    final Database db = await con.db;
+    final List<Map<String, dynamic>> maps =
+        await db.query(Relationship.tableName);
+    final list = List<Relationship>.generate(maps.length, (i) {
+      return Relationship.fromMap(maps[i]);
     });
     return list;
   }

@@ -123,7 +123,7 @@ class _Survey13State extends State<Survey13> {
             },
           ),
           Visibility(
-            visible: home.answer["21321"] == "1",
+            visible: home.answer["21321"] == "0",
             child: Column(
               children: [
                 ListTile(

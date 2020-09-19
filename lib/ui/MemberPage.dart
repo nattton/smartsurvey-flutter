@@ -81,7 +81,7 @@ class _MemberPageState extends State<MemberPage> {
                 PillShapedButton(
                   title: 'เริ่มสำรวจ',
                   color: Colors.red,
-                  onPressed: () async {
+                  onPressed: () {
                     Navigator.of(context)
                         .pushNamed('/surveygroup', arguments: app.currentHome);
                   },
@@ -93,22 +93,64 @@ class _MemberPageState extends State<MemberPage> {
   }
 
   Widget _buildRow(int index, Member item) {
-    return GestureDetector(
-      child: new ListTile(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-                "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ " +
-                    item.age().years.toString() +
-                    " ปี)",
-                style: _biggerFont),
-            Text("     ${item.idcard}", style: _biggerFont)
-          ],
+    return new ListTile(
+      title: Row(children: [
+        GestureDetector(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ " +
+                      item.age().years.toString() +
+                      " ปี)",
+                  style: _biggerFont),
+              Text("     ${item.idcard}", style: _biggerFont)
+            ],
+          ),
+          onTap: () {},
         ),
-        contentPadding: EdgeInsets.fromLTRB(18, 10, 8, 0),
-      ),
-      onTap: () {},
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 12.0, 0.0),
+          child: GestureDetector(
+            child:
+                SizedBox(width: 30.0, child: Image.asset("images/trash.png")),
+            onTap: () {
+              _removeMember(index);
+            },
+          ),
+        )
+      ]),
+      contentPadding: EdgeInsets.fromLTRB(18, 10, 8, 0),
     );
+  }
+
+  void _removeMember(int index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("แจ้งเตือน"),
+            content: Text("ต้องการลบข้อมูลชุดนี้ ?"),
+            actions: [
+              FlatButton(
+                child: Text("ยกเลิก"),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              FlatButton(
+                child: Text("ตกลง"),
+                onPressed: () async {
+                  setState(() {
+                    home.hmember.removeAt(index);
+                  });
+                  final app = Provider.of<SurveyApp>(context, listen: false);
+                  final repo = app.storage;
+                  await repo.addToWaiting(home);
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 }

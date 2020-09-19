@@ -65,6 +65,11 @@ flutter:
     - images/cddlogo.png
     - images/bgimage.png
     - images/surveys_main_menu.png
+    - images/trash.png
+    - images/upload_cloud.png
+    - images/face_normal.png
+    - images/face_sad.png
+    - images/face_smile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

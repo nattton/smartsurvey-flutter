@@ -87,7 +87,7 @@ class _Survey14State extends State<Survey14> {
             label: 'มีมูลค่าทรัพย์สิน ที่เสียไป ... บาท',
             value: "1",
             groupValue: home.answer["21431"],
-            question: "มีมูลค่าทรัพย์สิน 21431",
+            question: "มีมูลค่าทรัพย์สิน",
             unit: "บาท",
             onChanged: (String value) {
               setState(() {

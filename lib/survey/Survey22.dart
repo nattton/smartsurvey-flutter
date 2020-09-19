@@ -522,22 +522,22 @@ class _Survey22State extends State<Survey22> {
                 LabeledRadio(
                   label: 'เพียงพอ',
                   value: "1",
-                  groupValue: home.answer["422319"],
+                  groupValue: home.answer["422321"],
                   onChanged: (String value) {
                     setState(() {
-                      home.answer["422319"] = value;
+                      home.answer["422321"] = value;
                     });
                   },
                 ),
                 LabeledRadioInputNumber(
                   label: 'ไม่เพียงพอ ระบุจำนวนที่ต้องการ ... บาท',
                   value: "0",
-                  groupValue: home.answer["422319"],
+                  groupValue: home.answer["422321"],
                   question: "จำนวน",
                   unit: "บาท",
                   onChanged: (String value) {
                     setState(() {
-                      home.answer["422319"] = value;
+                      home.answer["422321"] = value;
                     });
                   },
                 ),
