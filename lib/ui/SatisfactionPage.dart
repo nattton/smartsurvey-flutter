@@ -60,8 +60,26 @@ class _SatisfactionPageState extends State<SatisfactionPage> {
                       home.satisfaction = _currentValue.toInt();
                     });
                   }),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 32.0,
+                    child: Image.asset("images/face_sad.png"),
+                  ),
+                  Spacer(),
+                  SizedBox(
+                    width: 32.0,
+                    child: Image.asset("images/face_normal.png"),
+                  ),
+                  Spacer(),
+                  SizedBox(
+                    width: 32.0,
+                    child: Image.asset("images/face_smile.png"),
+                  ),
+                ],
+              ),
               SizedBox(
-                height: 20.0,
+                height: 24.0,
               ),
               PillShapedButton(
                 title: "ถัดไป",
