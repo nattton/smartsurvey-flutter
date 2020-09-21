@@ -17,6 +17,7 @@ class Home {
   String latitude;
   String longitude;
   String photoSignature;
+  String photoHome;
   List<Member> hmember = [];
   Map<String, String> answer = {
     "1111": "-",
@@ -243,6 +244,7 @@ class Home {
       this.latitude,
       this.longitude,
       this.photoSignature,
+      this.photoHome,
       this.hmember,
       this.answer});
 
@@ -269,6 +271,7 @@ class Home {
       latitude: obj["latitude"],
       longitude: obj["longitude"],
       photoSignature: obj["photoSignature"],
+      photoHome: obj["photoHome"],
       hmember: hmember,
       answer: mapAnswer,
     );
@@ -291,6 +294,7 @@ class Home {
     latitude = json["latitude"];
     longitude = json["longitude"];
     photoSignature = json["photoSignature"];
+    photoHome = json["photoHome"];
     hmember = json["hmember"];
     answer = json["answer"];
   }
@@ -313,6 +317,7 @@ class Home {
       "latitude": latitude,
       "longitude": longitude,
       "photoSignature": photoSignature,
+      "photoHome": photoHome,
       "hmember": hmember,
       "answer": answer,
     };

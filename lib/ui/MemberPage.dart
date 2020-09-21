@@ -113,8 +113,12 @@ class _MemberPageState extends State<MemberPage> {
         Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 12.0, 0.0),
           child: GestureDetector(
-            child:
-                SizedBox(width: 30.0, child: Image.asset("images/trash.png")),
+            child: SizedBox(
+                width: 30.0,
+                child: Icon(
+                  Icons.delete_forever,
+                  color: Colors.red,
+                )),
             onTap: () {
               _removeMember(index);
             },
