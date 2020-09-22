@@ -25,8 +25,8 @@ class Waiting {
       _store[index] = item;
   }
 
-  void remove(int id) {
-    _store.remove(id);
+  void remove(Home home) {
+    _store.remove(home);
   }
 
   Map toMap() {

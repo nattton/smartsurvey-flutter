@@ -94,37 +94,43 @@ class _MemberPageState extends State<MemberPage> {
 
   Widget _buildRow(int index, Member item) {
     return new ListTile(
-      title: Row(children: [
-        GestureDetector(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                  "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ " +
-                      item.age().years.toString() +
-                      " ปี)",
-                  style: _biggerFont),
-              Text("     ${item.idcard}", style: _biggerFont)
-            ],
-          ),
-          onTap: () {},
+      title: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.all(const Radius.circular(10.0))),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 12.0, 12.0, 12.0),
+          child: Row(children: [
+            GestureDetector(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      "${index + 1}. ${item.prefixName} ${item.firstname} ${item.lastname} (อายุ " +
+                          item.age().years.toString() +
+                          " ปี)",
+                      style: _biggerFont),
+                  Text("     ${item.idcard}", style: _biggerFont)
+                ],
+              ),
+              onTap: () {},
+            ),
+            Spacer(),
+            GestureDetector(
+              child: SizedBox(
+                  width: 36.0,
+                  child: Icon(
+                    Icons.delete_forever,
+                    color: Colors.red,
+                    size: 36.0,
+                  )),
+              onTap: () {
+                _removeMember(index);
+              },
+            ),
+          ]),
         ),
-        Spacer(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 12.0, 0.0),
-          child: GestureDetector(
-            child: SizedBox(
-                width: 30.0,
-                child: Icon(
-                  Icons.delete_forever,
-                  color: Colors.red,
-                )),
-            onTap: () {
-              _removeMember(index);
-            },
-          ),
-        )
-      ]),
+      ),
       contentPadding: EdgeInsets.fromLTRB(18, 10, 8, 0),
     );
   }
