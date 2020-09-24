@@ -62,7 +62,9 @@ class _MemberPageState extends State<MemberPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 PillShapedButton(
-                  title: 'เพิ่มสมาชิก',
+                  title: home.countMember() == 0
+                      ? 'เพิ่มหัวหน้าครัวเรือน'
+                      : 'เพิ่มสมาชิก',
                   color: Colors.orange,
                   onPressed: () async {
                     // Navigator.of(context)
