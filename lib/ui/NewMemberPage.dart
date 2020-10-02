@@ -15,6 +15,7 @@ import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Relationship.dart';
 import 'package:smartsurveys/models/Religion.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
+import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
@@ -94,8 +95,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            home.countMember() == 0 ? 'เพิ่มหัวหน้าครัวเรือน' : 'เพิ่มสมาชิก'),
+        title: Text(home.noMember() ? 'เพิ่มหัวหน้าครัวเรือน' : 'เพิ่มสมาชิก'),
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -204,10 +204,9 @@ class _NewMemberPageState extends State<NewMemberPage> {
                 SizedBox(height: 24.0),
                 _decorateDropdown(_dropdownReligion()),
                 Visibility(
-                    visible: home.countMember() > 0,
-                    child: SizedBox(height: 24.0)),
+                    visible: !home.noMember(), child: SizedBox(height: 24.0)),
                 Visibility(
-                    visible: home.countMember() > 0,
+                    visible: !home.noMember(),
                     child: _decorateDropdown(_dropdownRelationship())),
                 SizedBox(height: 24.0),
                 ListTile(
@@ -274,7 +273,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                   },
                 ),
                 Visibility(
-                  visible: !home.hasInformant(),
+                  visible: home.hasInformant(),
                   child: Column(
                     children: [
                       SizedBox(height: 24.0),
@@ -319,9 +318,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                   value: "1",
                   groupValue: _welfareCard,
                   onChanged: (String value) {
-                    setState(() {
-                      _welfareCard = value;
-                    });
+                    _showWelfareCard();
                   },
                 ),
                 LabeledRadio(
@@ -355,6 +352,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 24.0),
               ],
             ),
           ),
@@ -647,5 +645,28 @@ class _NewMemberPageState extends State<NewMemberPage> {
     final repo = app.storage;
     await repo.addToWaiting(home);
     Navigator.of(context).pop();
+  }
+
+  _showWelfareCard() {
+    setState(() {
+      _welfareCard = "1";
+    });
+
+    showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: Text("นำไปใช้อะไรบ้าง"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+              ),
+              LabeledCheckBox(
+                label: "ซื้อสินค้าอุปโภค-บริโภค",
+              )
+            ],
+          ),
+        ));
   }
 }

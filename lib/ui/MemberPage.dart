@@ -67,8 +67,6 @@ class _MemberPageState extends State<MemberPage> {
                       : 'เพิ่มสมาชิก',
                   color: Colors.orange,
                   onPressed: () async {
-                    // Navigator.of(context)
-                    //     .pushNamed('/newmember', arguments: home);
                     Navigator.of(context)
                         .push(CupertinoPageRoute(
                           fullscreenDialog: true,

@@ -329,6 +329,8 @@ class Home {
 
   int countMember() => hmember.length;
 
+  bool noMember() => countMember() == 0;
+
   int countMemberFemale15() =>
       hmember.where((m) => (m.age().years > 15 && m.gender == "2")).length;
 
@@ -356,7 +358,7 @@ class Home {
 
   int countMemberSick() => hmember.where((m) => m.health == "2").length;
 
-  bool hasInformant() => hmember.firstWhere((m) => m.informant == "1") != null;
+  bool hasInformant() => hmember.where((m) => m.informant == "1").length > 0;
 
   int countWelfareCard() => hmember.where((m) => m.welfareCard == "1").length;
 }
