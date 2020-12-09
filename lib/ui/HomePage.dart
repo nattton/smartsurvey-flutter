@@ -72,8 +72,8 @@ class HomePage extends StatelessWidget {
                       child: Image.asset('images/cddlogo.png'),
                     ),
                   ),
-                  onTap: () =>
-                      _launchInBrowser("http://cdddata.ddns.me/mis/index.php"),
+                  onTap: () => _launchInBrowser(
+                      "https://www.cddsmartdata.com/login.php"),
                 ),
                 SizedBox(height: 24.0),
                 Center(
