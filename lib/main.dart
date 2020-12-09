@@ -8,6 +8,7 @@ import 'package:smartsurveys/ui/AreaResidancePage.dart';
 import 'package:smartsurveys/ui/CommunityPage.dart';
 import 'package:smartsurveys/ui/DistrictTypePage.dart';
 import 'package:smartsurveys/ui/HomePage.dart';
+import 'package:smartsurveys/ui/LocationPage.dart';
 import 'package:smartsurveys/ui/LoginPage.dart';
 import 'package:smartsurveys/Storage.dart';
 import 'package:smartsurveys/data/LocalKeyValuePersistence.dart';
@@ -192,14 +193,14 @@ class MyApp extends StatelessWidget {
           child: AreaResidancePage(home: home),
         );
       case '/areacareer':
-        final family = arguments as Home;
+        final home = arguments as Home;
         return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(
               value: provider,
             )
           ],
-          child: AreaCareerPage(home: family),
+          child: AreaCareerPage(home: home),
         );
       case '/member':
         final home = arguments as Home;
@@ -279,6 +280,16 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: SummaryPage(),
+        );
+      case '/location':
+        final home = arguments as Home;
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: provider,
+            )
+          ],
+          child: LocationPage(home: home),
         );
 
       default:

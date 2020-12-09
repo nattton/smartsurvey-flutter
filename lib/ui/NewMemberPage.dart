@@ -15,6 +15,7 @@ import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Relationship.dart';
 import 'package:smartsurveys/models/Religion.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
+import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
@@ -94,7 +95,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('เพิ่มสมาชิก'),
+        title: Text(home.noMember() ? 'เพิ่มหัวหน้าครัวเรือน' : 'เพิ่มสมาชิก'),
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -202,8 +203,11 @@ class _NewMemberPageState extends State<NewMemberPage> {
                 _decorateDropdown(_dropdownEducation()),
                 SizedBox(height: 24.0),
                 _decorateDropdown(_dropdownReligion()),
-                SizedBox(height: 24.0),
-                _decorateDropdown(_dropdownRelationship()),
+                Visibility(
+                    visible: !home.noMember(), child: SizedBox(height: 24.0)),
+                Visibility(
+                    visible: !home.noMember(),
+                    child: _decorateDropdown(_dropdownRelationship())),
                 SizedBox(height: 24.0),
                 ListTile(
                   title: Text(
@@ -268,32 +272,39 @@ class _NewMemberPageState extends State<NewMemberPage> {
                     });
                   },
                 ),
-                SizedBox(height: 24.0),
-                ListTile(
-                  title: Text(
-                    'เป็นผู้ให้ข้อมูล',
-                    style: MyFont.h2Font,
+                Visibility(
+                  visible: home.hasInformant(),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 24.0),
+                      ListTile(
+                        title: Text(
+                          'เป็นผู้ให้ข้อมูล',
+                          style: MyFont.h2Font,
+                        ),
+                      ),
+                      LabeledRadio(
+                        label: 'เป็นผู้ให้ข้อมูล',
+                        value: "1",
+                        groupValue: _informant,
+                        onChanged: (String value) {
+                          setState(() {
+                            _informant = value;
+                          });
+                        },
+                      ),
+                      LabeledRadio(
+                        label: 'ไม่เป็นผู้ให้ข้อมูล',
+                        value: "0",
+                        groupValue: _informant,
+                        onChanged: (String value) {
+                          setState(() {
+                            _informant = value;
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                LabeledRadio(
-                  label: 'เป็นผู้ให้ข้อมูล',
-                  value: "1",
-                  groupValue: _informant,
-                  onChanged: (String value) {
-                    setState(() {
-                      _informant = value;
-                    });
-                  },
-                ),
-                LabeledRadio(
-                  label: 'ไม่เป็นผู้ให้ข้อมูล',
-                  value: "0",
-                  groupValue: _informant,
-                  onChanged: (String value) {
-                    setState(() {
-                      _informant = value;
-                    });
-                  },
                 ),
                 SizedBox(height: 24.0),
                 ListTile(
@@ -307,9 +318,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                   value: "1",
                   groupValue: _welfareCard,
                   onChanged: (String value) {
-                    setState(() {
-                      _welfareCard = value;
-                    });
+                    _showWelfareCard();
                   },
                 ),
                 LabeledRadio(
@@ -343,6 +352,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 24.0),
               ],
             ),
           ),
@@ -578,12 +588,12 @@ class _NewMemberPageState extends State<NewMemberPage> {
       return;
     }
 
-    if (_relationship == null) {
+    if (home.countMember() > 0 && _relationship == null) {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text("กรุณาความเกี่ยวข้องกับหัวหน้าครัวเรือน"),
+              content: Text("กรุณาเลือกความเกี่ยวข้องกับหัวหน้าครัวเรือน"),
             );
           });
       return;
@@ -622,7 +632,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
     member.jobname = _carreer.code;
     member.education = _education.code;
     member.religion = _religion.code;
-    member.relation = _relationship.code;
+    if (_relationship != null) member.relation = _relationship.code;
     member.jobname = _carreer.code;
     member.health = _health;
     member.ability = _ability;
@@ -635,5 +645,28 @@ class _NewMemberPageState extends State<NewMemberPage> {
     final repo = app.storage;
     await repo.addToWaiting(home);
     Navigator.of(context).pop();
+  }
+
+  _showWelfareCard() {
+    setState(() {
+      _welfareCard = "1";
+    });
+
+    showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: Text("นำไปใช้อะไรบ้าง"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+              ),
+              LabeledCheckBox(
+                label: "ซื้อสินค้าอุปโภค-บริโภค",
+              )
+            ],
+          ),
+        ));
   }
 }

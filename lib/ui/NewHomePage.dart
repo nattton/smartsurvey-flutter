@@ -155,7 +155,7 @@ class _NewHomePageState extends State<NewHomePage> {
                   child: Row(
                     children: [
                       SizedBox(
-                          width: 140,
+                          width: 100,
                           child: TextField(
                               maxLength: 4,
                               controller: _homeCodeController,
@@ -193,6 +193,13 @@ class _NewHomePageState extends State<NewHomePage> {
                               inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ])),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 14.0),
+                        child: IconButton(
+                            iconSize: 36.0,
+                            icon: Icon(Icons.search),
+                            onPressed: () {}),
+                      ),
                     ],
                   ),
                 ),

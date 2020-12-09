@@ -25,7 +25,7 @@ class _SatisfactionPageState extends State<SatisfactionPage> {
         title: "ประเมินระดับความสุข",
         child: Container(
           margin: EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: [
               Text('คำอธิบาย', style: MyFont.h1Font),
               Text(

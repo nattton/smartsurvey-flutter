@@ -118,4 +118,9 @@ class Storage {
     _waiting.addOrUpdate(item);
     await _saveWaiting();
   }
+
+  void removeWaiting(Home item) async {
+    _waiting.remove(item);
+    await _saveWaiting();
+  }
 }

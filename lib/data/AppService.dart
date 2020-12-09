@@ -1,13 +1,32 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:device_info/device_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:smartsurveys/models/CommunityAPI.dart';
+import 'package:smartsurveys/models/Home.dart';
 import 'package:smartsurveys/models/SaveUserResponse.dart';
+import 'package:smartsurveys/models/SaveSurveyResponse.dart';
 import 'package:smartsurveys/models/User.dart';
 
 class AppService {
   static final hostLogin = 'http://cddlogin.ddns.me/api/';
   static final apiToken = 'Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ=';
+
+  Future<String> deviceId() async {
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    var deviceId = '';
+    if (Platform.isAndroid) {
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      deviceId = await androidInfo.androidId;
+    } else {
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      deviceId = await iosInfo.identifierForVendor;
+    }
+
+    return deviceId;
+  }
+
   static Future<User> login(String userName, String password) async {
     var url = "${hostLogin}mobile.php";
     var response = await http.post(url, body: {
@@ -68,5 +87,21 @@ class AppService {
     var response = await http.get(url);
     List<dynamic> listMap = json.decode(response.body);
     return listMap.map((m) => CommunityAPI.fromJson(m)).toList();
+  }
+
+  static Future<SaveSurveyResponse> saveSurvey(User user, Home home) async {
+    var url = "${hostLogin}mobile.php";
+    String objString = jsonEncode(home);
+    var response = await http.post(url, body: {
+      'uid': user.uid,
+      't': apiToken,
+      'token': user.token,
+      'task': 'savesurvey',
+      'family': objString,
+    });
+
+    Map map = json.decode(response.body);
+    SaveSurveyResponse uploadResponse = SaveSurveyResponse.fromJson(map);
+    return uploadResponse;
   }
 }
