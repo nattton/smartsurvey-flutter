@@ -588,12 +588,12 @@ class _NewMemberPageState extends State<NewMemberPage> {
       return;
     }
 
-    if (_relationship == null) {
+    if (home.countMember() > 0 && _relationship == null) {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              content: Text("กรุณาความเกี่ยวข้องกับหัวหน้าครัวเรือน"),
+              content: Text("กรุณาเลือกความเกี่ยวข้องกับหัวหน้าครัวเรือน"),
             );
           });
       return;
@@ -632,7 +632,7 @@ class _NewMemberPageState extends State<NewMemberPage> {
     member.jobname = _carreer.code;
     member.education = _education.code;
     member.religion = _religion.code;
-    member.relation = _relationship.code;
+    if (_relationship != null) member.relation = _relationship.code;
     member.jobname = _carreer.code;
     member.health = _health;
     member.ability = _ability;
