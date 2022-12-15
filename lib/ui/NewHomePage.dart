@@ -404,7 +404,7 @@ class _NewHomePageState extends State<NewHomePage> {
               title: Text("แจ้งเตือน"),
               content: Text("กรุณากรอกรหัสประจำบ้าน"),
               actions: [
-                FlatButton(
+                TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text("ตกลง")),
               ],
@@ -421,7 +421,7 @@ class _NewHomePageState extends State<NewHomePage> {
               title: Text("แจ้งเตือน"),
               content: Text("กรุณากรอกเลขที่บ้าน"),
               actions: [
-                FlatButton(
+                TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text("ตกลง")),
               ],

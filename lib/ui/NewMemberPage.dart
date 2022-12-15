@@ -15,7 +15,6 @@ import 'package:smartsurveys/models/Prefix.dart';
 import 'package:smartsurveys/models/Relationship.dart';
 import 'package:smartsurveys/models/Religion.dart';
 import 'package:smartsurveys/models/SurveyApp.dart';
-import 'package:smartsurveys/widgets/LabeledCheckBox.dart';
 import 'package:smartsurveys/widgets/LabeledRadio.dart';
 import 'package:smartsurveys/widgets/PillShapedButton.dart';
 
@@ -651,22 +650,5 @@ class _NewMemberPageState extends State<NewMemberPage> {
     setState(() {
       _welfareCard = "1";
     });
-
-    showDialog(
-        context: context,
-        child: new AlertDialog(
-          title: Text("นำไปใช้อะไรบ้าง"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-              ),
-              LabeledCheckBox(
-                label: "ซื้อสินค้าอุปโภค-บริโภค",
-              )
-            ],
-          ),
-        ));
   }
 }

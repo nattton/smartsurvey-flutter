@@ -89,11 +89,11 @@ class _CommunityPageState extends State<CommunityPage> {
               title: new Text("ยืนยันเลือกชุมชน"),
               content: new Text(item.communityName),
               actions: [
-                new FlatButton(
+                new TextButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: new Text("ยกเลิก"),
                 ),
-                new FlatButton(
+                new TextButton(
                   onPressed: () => Navigator.of(context)
                       .popAndPushNamed("/newhome", arguments: {'cm': item}),
                   child: new Text("ตกลง"),

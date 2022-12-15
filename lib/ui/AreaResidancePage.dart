@@ -214,7 +214,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -222,7 +222,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () {
                         if (_raiController.text == "" ||
@@ -312,7 +312,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -320,7 +320,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () {
                         if (_raiController.text == "" ||
@@ -422,7 +422,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -430,7 +430,7 @@ class _AreaResidancePageState extends State<AreaResidancePage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () {
                         if (_raiController.text == "" ||

@@ -143,11 +143,11 @@ class _MemberPageState extends State<MemberPage> {
             title: Text("แจ้งเตือน"),
             content: Text("ต้องการลบข้อมูลชุดนี้ ?"),
             actions: [
-              FlatButton(
+              TextButton(
                 child: Text("ยกเลิก"),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              FlatButton(
+              TextButton(
                 child: Text("ตกลง"),
                 onPressed: () async {
                   setState(() {

@@ -143,13 +143,13 @@ class _LabeledCheckBoxInputNumber2State
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         widget.onChanged("");
                         Navigator.of(context).pop();
                       },
                       child: Text("ยกเลิก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("ตกลง"),
                       onPressed: () {
                         if (_valueController.text == "" ||

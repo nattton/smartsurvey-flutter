@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Theme.of(context).primaryColor,
                     onPressed: () => _login(context),
                   ),
-                  FlatButton(
+                  TextButton(
                     child: Text(
                       'ลืมรหัสผ่าน ?',
                       style: TextStyle(color: Colors.black54),
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 title: Text("แจ้งเตือน"),
                 content: Text('กรุณากรอก Username และ Password'),
                 actions: [
-                  FlatButton(
+                  TextButton(
                     child: Text("ปิด"),
                     onPressed: () => Navigator.of(context).pop(),
                   )
@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
               title: Text("แจ้งเตือน"),
               content: Text(user.message),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("ปิด"),
                   onPressed: () => Navigator.of(context).pop(),
                 )

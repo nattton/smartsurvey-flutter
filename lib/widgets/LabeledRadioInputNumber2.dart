@@ -143,12 +143,12 @@ class _LabeledRadioInputNumber2State extends State<LabeledRadioInputNumber2> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                       child: Text("ยกเลิก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("ตกลง"),
                       onPressed: () {
                         if (_valueController.text == "" ||

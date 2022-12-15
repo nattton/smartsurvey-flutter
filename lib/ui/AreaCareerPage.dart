@@ -232,7 +232,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -240,7 +240,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () {
                         if (_raiController.text == "" ||
@@ -327,7 +327,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -335,7 +335,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () {
                         if (_raiController.text == "" ||
@@ -434,7 +434,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
             actions: [
               Row(
                 children: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() {
@@ -442,7 +442,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                         });
                       },
                       child: Text("ออก")),
-                  FlatButton(
+                  TextButton(
                       child: Text("บันทึก"),
                       onPressed: () async {
                         if (_raiController.text == "" ||
@@ -469,7 +469,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
             title: Text("ยืนยัน"),
             content: Text("ไม่มีที่ดินใช้ประกอบอาชีพ"),
             actions: [
-              FlatButton(
+              TextButton(
                 child: Text("ปิด"),
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -478,7 +478,7 @@ class _AreaCareerPageState extends State<AreaCareerPage> {
                   });
                 },
               ),
-              FlatButton(
+              TextButton(
                   child: Text("บันทึก"),
                   onPressed: () {
                     home.hlive = "5";

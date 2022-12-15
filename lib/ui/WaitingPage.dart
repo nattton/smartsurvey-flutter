@@ -182,7 +182,7 @@ class _WaitingPageState extends State<WaitingPage> {
               title: Text("ผลการบันทึกข้อมูล"),
               content: Text(response.message),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("ตกลง"),
                   onPressed: () async {
                     Navigator.of(context).pop();
@@ -199,7 +199,7 @@ class _WaitingPageState extends State<WaitingPage> {
               title: Text("ผลการบันทึกข้อมูล"),
               content: Text(response.message),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("ปิด"),
                   onPressed: () async {
                     Navigator.of(context).pop();
@@ -219,11 +219,11 @@ class _WaitingPageState extends State<WaitingPage> {
             title: Text("แจ้งเตือน"),
             content: Text("ต้องการลบข้อมูลชุดนี้ ?"),
             actions: [
-              FlatButton(
+              TextButton(
                 child: Text("ยกเลิก"),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              FlatButton(
+              TextButton(
                 child: Text("ตกลง"),
                 onPressed: () async {
                   final app = Provider.of<SurveyApp>(context, listen: false);
